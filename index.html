@@ -279,7 +279,7 @@
         </div>
     </section>
 
-    <!-- Ecossistema Argus - NOVA ESTRUTURA -->
+    <!-- Ecossistema Argus -->
     <section id="solucao" class="py-32 bg-slate-50 overflow-hidden relative">
         <div class="absolute -right-20 top-40 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl"></div>
         <div class="max-w-7xl mx-auto px-6 relative z-10">
@@ -437,6 +437,53 @@
         </div>
     </section>
 
+    <!-- Formulário de Contato -->
+    <section id="contato-form" class="py-24 bg-slate-900 relative">
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-blue-400 font-bold text-xs uppercase tracking-[0.3em] mb-4 block">Solicite uma demonstração</span>
+                <h3 class="text-4xl font-light text-white italic tracking-tight">Interessado no <span class="font-bold text-blue-500">Argus Watch</span>?</h3>
+                <p class="text-blue-100/50 mt-4 font-light">Preencha o formulário abaixo e nossa equipe entrará em contato.</p>
+            </div>
+
+            <form action="https://formsubmit.co/comercial@argusbc.com.br" method="POST" class="bg-white/5 backdrop-blur-sm p-8 md:p-12 rounded-3xl border border-white/10 shadow-2xl">
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-xs font-bold text-blue-300 uppercase tracking-widest mb-2">Nome Completo</label>
+                        <input type="text" name="name" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="Seu nome">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-blue-300 uppercase tracking-widest mb-2">Instituição / Empresa</label>
+                        <input type="text" name="company" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="Nome do hospital ou empresa">
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-xs font-bold text-blue-300 uppercase tracking-widest mb-2">E-mail Profissional</label>
+                        <input type="email" name="email" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="exemplo@email.com">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-blue-300 uppercase tracking-widest mb-2">Telefone / WhatsApp</label>
+                        <input type="tel" name="phone" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="(00) 00000-0000">
+                    </div>
+                </div>
+                <div class="mb-8">
+                    <label class="block text-xs font-bold text-blue-300 uppercase tracking-widest mb-2">Mensagem</label>
+                    <textarea name="message" rows="4" required class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors resize-none" placeholder="Como podemos ajudar sua instituição?"></textarea>
+                </div>
+                
+                <!-- Hidden configuration for FormSubmit -->
+                <input type="hidden" name="_subject" value="Nova Solicitação de Informações - ARGUS Watch">
+                <input type="hidden" name="_next" value="https://baumgratzcode.com.br/sucesso">
+                
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-blue-900/40 uppercase tracking-[0.2em] text-sm">
+                    Enviar Solicitação <i class="fas fa-paper-plane ml-2"></i>
+                </button>
+            </form>
+        </div>
+        <div class="absolute bottom-0 right-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
+    </section>
+
     <!-- Rodapé -->
     <footer id="contato" class="footer-custom text-white pt-32 pb-16">
         <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
@@ -461,8 +508,8 @@
                 </div>
                 <div>
                     <h5 class="text-blue-400 font-bold text-xs uppercase tracking-widest mb-8">Contacto</h5>
-                    <p class="text-white text-xl font-light mb-4">comercial@baumgratzcode.com.br</p>
-                    <a href="mailto:comercial@baumgratzcode.com.br" class="inline-block border border-blue-500 text-blue-400 px-6 py-2 rounded text-xs uppercase tracking-widest hover:bg-blue-500 hover:text-white transition-all">Enviar Email</a>
+                    <p class="text-white text-xl font-light mb-4">comercial@argusbc.com.br</p>
+                    <a href="mailto:comercial@argusbc.com.br" class="inline-block border border-blue-500 text-blue-400 px-6 py-2 rounded text-xs uppercase tracking-widest hover:bg-blue-500 hover:text-white transition-all">Enviar Email</a>
                 </div>
             </div>
             <div class="pt-12 border-t border-blue-900/50 flex flex-col md:flex-row justify-between items-center text-[10px] text-blue-300/40 font-bold uppercase tracking-widest">
