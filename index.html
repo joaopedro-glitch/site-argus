@@ -12,40 +12,46 @@
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Outfit:wght@200;300;400;600;700&display=swap');
         
         :root {
-            --bg-dark: #000000;
+            --bg-deep-blue: #000B1D;
             --accent-blue: #0055FF;
-            --soft-blue: #00A3FF;
+            --bright-blue: #00D1FF;
+            --glass-blue: rgba(0, 85, 255, 0.05);
         }
 
         body {
             font-family: 'Outfit', sans-serif;
-            background-color: #ffffff;
+            background-color: #f8faff;
             color: #1a1a1a;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
 
         .hero-section {
-            background-color: var(--bg-dark);
-            background-image: radial-gradient(circle at 50% 50%, #001a4d 0%, #000000 85%);
-            min-height: 90vh;
+            background: linear-gradient(135deg, #000B1D 0%, #001A4D 50%, #003366 100%);
+            min-height: 95vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            position: relative;
         }
 
         .logo-container {
-            max-width: 380px;
-            width: 80%;
+            max-width: 500px;
+            width: 90%;
             margin: 0 auto 2rem;
-            filter: drop-shadow(0 0 20px rgba(0, 85, 255, 0.5));
+            filter: drop-shadow(0 0 30px rgba(0, 209, 255, 0.4));
             transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
         }
         
         .logo-container:hover {
             transform: scale(1.03);
-            filter: drop-shadow(0 0 30px rgba(0, 85, 255, 0.7));
+            filter: drop-shadow(0 0 50px rgba(0, 209, 255, 0.6));
         }
 
         .nav-link {
@@ -59,7 +65,7 @@
             height: 2px;
             bottom: -4px;
             left: 0;
-            background-color: var(--accent-blue);
+            background-color: var(--bright-blue);
             transition: width 0.3s ease;
         }
 
@@ -67,24 +73,35 @@
             width: 100%;
         }
 
-        .module-card {
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        .module-card-dark {
+            background: linear-gradient(145deg, #001A4D, #000B1D);
+            border: 1px solid rgba(0, 209, 255, 0.2);
+            transition: all 0.4s ease;
         }
 
-        .module-card:hover {
+        .module-card-dark:hover {
             transform: translateY(-10px);
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.1);
+            border-color: var(--bright-blue);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 85, 255, 0.2);
+        }
+
+        .module-card-light {
+            background: white;
+            border: 1px solid #e2e8f0;
+            transition: all 0.4s ease;
+        }
+
+        .module-card-light:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 20px 40px rgba(0, 85, 255, 0.1);
         }
 
         .agf-gate {
-            border-left: 2px solid #e2e8f0;
+            border-left: 2px solid #cbd5e1;
             padding-left: 2rem;
             position: relative;
             padding-bottom: 2rem;
-        }
-
-        .agf-gate:last-child {
-            padding-bottom: 0;
         }
 
         .agf-gate::before {
@@ -96,6 +113,7 @@
             height: 10px;
             border-radius: 50%;
             background: var(--accent-blue);
+            box-shadow: 0 0 10px var(--accent-blue);
         }
 
         #backToTop {
@@ -104,9 +122,8 @@
             right: 40px;
             width: 50px;
             height: 50px;
-            background: rgba(0, 0, 0, 0.8);
+            background: var(--accent-blue);
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -116,19 +133,38 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.4s ease;
-            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 20px rgba(0, 85, 255, 0.3);
         }
 
         #backToTop.show {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0);
         }
 
-        .content-highlight {
-            border-left: 4px solid var(--accent-blue);
-            padding-left: 1.5rem;
-            margin-bottom: 2rem;
+        .svg-logo-text {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-custom {
+            background: #000B1D;
+            position: relative;
+        }
+
+        /* Typography Enhancements for About Section */
+        .text-balanced {
+            line-height: 1.8;
+            letter-spacing: 0.01em;
+        }
+
+        .drop-cap::first-letter {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            float: left;
+            margin-right: 0.75rem;
+            line-height: 1;
         }
     </style>
 </head>
@@ -139,142 +175,203 @@
     </button>
 
     <!-- Navegação -->
-    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
+    <nav class="fixed w-full z-50 bg-[#000B1D]/80 backdrop-blur-md border-b border-blue-900/30">
         <div class="max-w-7xl mx-auto px-6 h-24 flex justify-between items-center">
             <div class="flex flex-col">
                 <span class="text-white text-2xl font-bold tracking-[0.2em] leading-none uppercase">Baumgratz</span>
-                <span class="text-blue-50 text-[10px] tracking-[0.4em] font-semibold uppercase mt-1">Code & Intelligence</span>
+                <span class="text-blue-400 text-[10px] tracking-[0.4em] font-semibold uppercase mt-1">Code & Intelligence</span>
             </div>
             <div class="hidden md:flex space-x-10 items-center">
                 <a href="#sobre" class="nav-link text-white/70 hover:text-white text-sm uppercase tracking-widest font-light">Sobre</a>
-                <a href="#solucao" class="nav-link text-white/70 hover:text-white text-sm uppercase tracking-widest font-light">Argus Watch</a>
+                <a href="#solucao" class="nav-link text-white/70 hover:text-white text-sm uppercase tracking-widest font-light">Ecossistema</a>
                 <a href="#metodologia" class="nav-link text-white/70 hover:text-white text-sm uppercase tracking-widest font-light">Metodologia</a>
-                <a href="#contato" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-sm transition-all text-xs uppercase tracking-[0.2em] font-bold">Contato</a>
+                <a href="#contato" class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-md transition-all text-xs uppercase tracking-[0.2em] font-bold shadow-lg shadow-blue-900/20">Contato</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <header class="hero-section relative overflow-hidden px-6">
+    <header class="hero-section px-6">
         <div class="max-w-5xl mx-auto z-10">
             <div class="logo-container">
-                <svg viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
                     <defs>
-                        <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#00A3FF;stop-opacity:1" />
+                        <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#00D1FF;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
                         </linearGradient>
                     </defs>
-                    <path d="M40,60 C40,60 80,25 120,60 C120,60 80,95 40,60 Z" fill="none" stroke="url(#blueGrad)" stroke-width="3" />
-                    <circle cx="80" cy="60" r="12" fill="url(#blueGrad)" />
-                    <text x="140" y="75" font-family="Outfit, sans-serif" font-weight="800" font-size="54" fill="#ffffff" letter-spacing="4">ARGUS</text>
-                    <text x="345" y="75" font-family="Outfit, sans-serif" font-weight="300" font-size="54" fill="#00A3FF" letter-spacing="4">WATCH</text>
-                    <rect x="145" y="90" width="310" height="1" fill="rgba(255,255,255,0.2)" />
-                    <text x="145" y="110" font-family="Outfit, sans-serif" font-weight="600" font-size="10" fill="rgba(255,255,255,0.5)" letter-spacing="6">INTELLIGENT RISK MANAGEMENT</text>
+                    <g fill="none" stroke="url(#logoGrad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M40,80 L80,80 L95,50 L115,110 L135,80 L160,80" />
+                        <path d="M160,80 C180,50 220,50 240,80 C220,110 180,110 160,80 Z" />
+                        <circle cx="200" cy="80" r="10" fill="white" stroke="none">
+                            <animate attributeName="r" values="8;11;8" dur="3s" repeatCount="indefinite" />
+                        </circle>
+                        <path d="M240,80 L265,80 L285,120 L310,40 L330,80 L360,80" />
+                    </g>
+                    <text x="200" y="160" text-anchor="middle" fill="white" font-size="42" class="svg-logo-text uppercase">
+                        <tspan font-weight="800">ARGUS</tspan> <tspan font-weight="300" fill="#00D1FF">WATCH</tspan>
+                    </text>
                 </svg>
+                <div class="mt-2">
+                    <span class="text-[10px] tracking-[0.6em] font-semibold text-blue-300/60 uppercase">Intelligent Risk Management</span>
+                </div>
             </div>
-            
-            <p class="text-white/70 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto tracking-wide">
-                Monitoramento Inteligente e Previsão de Riscos Assistenciais para Instituições de Saúde de Alta Performance.
+            <p class="text-blue-100/70 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto tracking-wide mt-8">
+                Monitorização Inteligente e Previsão de Riscos Assistenciais para Instituições de Saúde de Alta Performance.
             </p>
         </div>
-        
         <div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-            <div class="w-[800px] h-[800px] bg-blue-600/15 rounded-full blur-[180px]"></div>
+            <div class="w-[600px] h-[600px] bg-blue-500/20 rounded-full blur-[120px] animate-pulse"></div>
         </div>
     </header>
 
-    <!-- Seção Sobre -->
-    <section id="sobre" class="py-32 bg-white">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-blue-600 font-bold text-xs uppercase tracking-[0.3em] mb-4 block">Visão Estratégica</span>
-                <h3 class="text-4xl font-light text-black leading-snug">Sobre a <span class="font-bold">Plataforma</span></h3>
+    <!-- Secção Sobre -->
+    <section id="sobre" class="py-32 bg-white relative">
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-24">
+                <span class="text-blue-600 font-bold text-xs uppercase tracking-[0.3em] mb-4 block">Inteligência em Saúde</span>
+                <h3 class="text-5xl font-light text-slate-900 tracking-tight">O Futuro da <span class="font-bold text-blue-700">Gestão de Riscos</span></h3>
             </div>
             
-            <div class="grid gap-12 text-gray-600 font-light leading-relaxed text-lg">
-                <div class="content-highlight">
-                    <p>
-                        A <strong>Baumgratz Code</strong> apresenta a proposta para disponibilização do <strong>ARGUS Watch</strong>, uma plataforma corporativa de monitoramento e gestão de riscos assistenciais, que integra recursos de Inteligência Artificial aplicada à prevenção e ao controle de infecções e à Segurança do Paciente.
+            <div class="grid gap-16 text-slate-700 font-light text-lg">
+                <div class="relative p-10 bg-blue-50/30 rounded-3xl border-l-4 border-blue-600 overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-5">
+                        <i class="fas fa-quote-right text-8xl text-blue-900"></i>
+                    </div>
+                    <p class="text-xl md:text-2xl leading-relaxed text-slate-800 font-normal drop-cap">
+                        A <span class="text-blue-700 font-semibold">Baumgratz Code</span> apresenta a proposta para disponibilização do <strong>ARGUS Watch</strong>, uma plataforma corporativa de monitoramento e gestão de riscos assistenciais, que integra recursos de <strong>Inteligência Artificial</strong> aplicada à prevenção e ao controle de infecções e à Segurança do Paciente.
                     </p>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-10 items-start">
-                    <p>
-                        Desenvolvida para apoiar o <strong>Controle de Infecção Hospitalar (CCIH)</strong> e o <strong>Núcleo de Segurança do Paciente (NSP)</strong>, a solução permite o acompanhamento contínuo de indicadores, a identificação de padrões de risco, o suporte à tomada de decisão e o gerenciamento de investigações de eventos adversos.
-                    </p>
-                    <p>
-                        Além disso, o ARGUS Watch contempla o controle e a <strong>validação dos processos de higienização de ambientes</strong>, contribuindo para a redução de riscos, a otimização de custos operacionais e o fortalecimento da qualidade assistencial.
-                    </p>
+                <div class="grid md:grid-cols-2 gap-12 items-stretch">
+                    <div class="flex flex-col">
+                        <h4 class="flex items-center gap-3 text-blue-700 font-bold text-sm uppercase tracking-widest mb-6">
+                            <span class="w-8 h-px bg-blue-600"></span> Suporte Especializado
+                        </h4>
+                        <p class="text-balanced mb-6">
+                            Desenvolvida para apoiar o <strong>Controle de Infecção Hospitalar (CCIH)</strong> e o <strong>Núcleo de Segurança do Paciente (NSP)</strong>, a solução permite o acompanhamento contínuo de indicadores, a identificação de padrões de risco, o suporte à tomada de decisão e o gerenciamento de investigações de eventos adversos.
+                        </p>
+                        <p class="text-balanced text-slate-500">
+                            A tecnologia atua como uma camada de inteligência sobre os dados, reduzindo a carga cognitiva das equipes e focando no que realmente importa: a vida.
+                        </p>
+                    </div>
+                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 flex flex-col justify-center">
+                        <i class="fas fa-microscope text-blue-600 text-3xl mb-6"></i>
+                        <h4 class="text-xl font-bold text-slate-900 mb-4">Visão 360º da Qualidade</h4>
+                        <p class="text-balanced text-slate-600">
+                            Integramos dados clínicos, laboratoriais e operacionais em uma interface única, garantindo que nenhum risco passe despercebido pelos gestores da assistência.
+                        </p>
+                    </div>
                 </div>
 
-                <div class="bg-gray-50 p-10 rounded-lg border-l-4 border-blue-600">
-                    <p class="mb-6">
-                        Por meio de modelos avançados de IA e análise preditiva, o ARGUS Watch transforma grandes volumes de dados assistenciais e operacionais em <strong>insights estratégicos</strong>, permitindo que o hospital atue de forma preventiva, antecipando eventos críticos que impactam diretamente a qualidade do cuidado, os custos assistenciais e a sustentabilidade da operação.
-                    </p>
-                    <p class="font-normal text-black italic">
-                        Ao adotar o ARGUS Watch, o hospital passa a operar com uma <strong>visão data-driven</strong>, substituindo análises reativas por gestão preditiva de riscos, com impacto direto em ROI, eficiência operacional, conformidade regulatória e posicionamento estratégico da instituição frente a órgãos reguladores, operadoras e processos de acreditação.
-                    </p>
+                <div class="grid md:grid-cols-12 gap-10 items-center py-12 border-y border-slate-100">
+                    <div class="md:col-span-5">
+                        <h4 class="text-3xl font-light text-slate-900 leading-tight">Transformando Dados em <span class="font-bold text-blue-600">Insights Estratégicos</span></h4>
+                    </div>
+                    <div class="md:col-span-7">
+                        <p class="text-balanced text-slate-600 italic border-l-2 border-blue-200 pl-8">
+                            Por meio de modelos avançados de IA e análise preditiva, o <strong>ARGUS Watch</strong> transforma grandes volumes de dados assistenciais e operacionais em insights estratégicos, permitindo que o hospital atue de forma preventiva e sustentável.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção de Ecossistema -->
-    <section id="solucao" class="py-32 bg-gray-50 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
+    <!-- Ecossistema Argus - NOVA ESTRUTURA -->
+    <section id="solucao" class="py-32 bg-slate-50 overflow-hidden relative">
+        <div class="absolute -right-20 top-40 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="mb-20 text-center md:text-left">
                 <span class="text-blue-600 font-bold text-xs uppercase tracking-[0.3em] mb-4 block">Ecossistema Argus</span>
-                <h3 class="text-4xl font-light text-black leading-tight max-w-3xl">Módulos Especializados em <span class="font-bold">Alta Complexidade</span>.</h3>
+                <h3 class="text-4xl font-light text-slate-900 leading-tight max-w-3xl">Inteligência Integrada para <span class="font-bold text-blue-800">Alta Performance</span>.</h3>
             </div>
-
-            <div class="grid lg:grid-cols-2 gap-8">
-                <!-- Módulo CCIH -->
-                <div class="module-card bg-black p-10 text-white rounded-sm relative group shadow-2xl flex flex-col h-full">
+            
+            <div class="grid lg:grid-cols-2 gap-8 mb-12">
+                <!-- Módulo Assistencial e Clínico -->
+                <div class="module-card-dark p-10 text-white rounded-2xl relative group flex flex-col h-full shadow-2xl">
                     <div class="mb-8 flex items-center justify-between">
-                        <i class="fas fa-shield-virus text-4xl text-blue-400"></i>
-                        <span class="text-[10px] font-black uppercase tracking-widest text-white/30">Módulo 01</span>
+                        <div class="w-16 h-16 bg-blue-600/20 rounded-full flex items-center justify-center border border-blue-400/30">
+                            <i class="fas fa-stethoscope text-3xl text-blue-300"></i>
+                        </div>
+                        <span class="text-[10px] font-black uppercase tracking-widest text-blue-300/40">Módulo 01</span>
                     </div>
-                    <h4 class="text-3xl font-bold mb-4 tracking-tight text-white">CCIH & Higienização</h4>
-                    <p class="text-blue-400/80 text-xs font-bold uppercase tracking-widest mb-8">Prevenção e Controle de Infecções</p>
+                    <h4 class="text-3xl font-bold mb-4 tracking-tight">Assistencial e Clínico</h4>
+                    <p class="text-blue-300 text-xs font-bold uppercase tracking-widest mb-8">Gestão de Beira de Leito e Diagnóstico</p>
                     
                     <div class="space-y-6 flex-grow">
-                        <div class="border-l-2 border-blue-600/30 pl-6">
-                            <h5 class="text-sm font-bold text-white uppercase tracking-widest mb-2">Vigilância Epidemiológica</h5>
-                            <p class="text-gray-400 text-sm font-light leading-relaxed">Monitorização automática de IRAS e gestão inteligente de isolamentos preventivos com base em resultados laboratoriais.</p>
+                        <div class="border-l-2 border-blue-500/30 pl-6 hover:border-blue-400 transition-colors">
+                            <h5 class="text-sm font-bold text-blue-100 uppercase tracking-widest mb-2">Atendimentos e Sinais Vitais</h5>
+                            <p class="text-blue-100/60 text-sm font-light">Consulta com filtros avançados e alertas automáticos de alterações clínicas críticas.</p>
                         </div>
-                        <div class="border-l-2 border-blue-600/30 pl-6">
-                            <h5 class="text-sm font-bold text-white uppercase tracking-widest mb-2">Higienização e Ambiência</h5>
-                            <p class="text-gray-400 text-sm font-light leading-relaxed">Auditoria digital de limpeza e controle de produtos químicos integrada ao controle de infecção hospitalar.</p>
+                        <div class="border-l-2 border-blue-500/30 pl-6 hover:border-blue-400 transition-colors">
+                            <h5 class="text-sm font-bold text-blue-100 uppercase tracking-widest mb-2">Internações e Dispositivos</h5>
+                            <p class="text-blue-100/60 text-sm font-light">Rastreamento de movimentação, tempo de permanência e controle de dispositivos invasivos.</p>
                         </div>
-                        <div class="border-l-2 border-blue-600/30 pl-6">
-                            <h5 class="text-sm font-bold text-white uppercase tracking-widest mb-2">Stewardship de Antimicrobianos</h5>
-                            <p class="text-gray-400 text-sm font-light leading-relaxed">Cruzamento de prescrições com perfis de sensibilidade para otimização da terapia medicamentosa.</p>
+                        <div class="border-l-2 border-blue-500/30 pl-6 hover:border-blue-400 transition-colors">
+                            <h5 class="text-sm font-bold text-blue-100 uppercase tracking-widest mb-2">Bloco Cirúrgico e Laboratório</h5>
+                            <p class="text-blue-100/60 text-sm font-light">Classificação de risco ISC, integração laboratorial para culturas e gestão de antimicrobianos.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Módulo NSP -->
-                <div class="module-card bg-white p-10 border border-gray-200 rounded-sm relative group flex flex-col h-full">
+                <!-- Módulo CCIH, NSP e Higienização -->
+                <div class="module-card-light p-10 rounded-2xl relative group flex flex-col h-full shadow-lg">
                     <div class="mb-8 flex items-center justify-between">
-                        <i class="fas fa-user-shield text-4xl text-blue-600"></i>
-                        <span class="text-[10px] font-black uppercase tracking-widest text-gray-300">Módulo 02</span>
+                        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center border border-blue-100">
+                            <i class="fas fa-user-shield text-3xl text-blue-600"></i>
+                        </div>
+                        <span class="text-[10px] font-black uppercase tracking-widest text-slate-300">Módulo 02</span>
                     </div>
-                    <h4 class="text-3xl font-bold mb-4 tracking-tight text-black">Segurança do Paciente</h4>
-                    <p class="text-blue-600 text-xs font-bold uppercase tracking-widest mb-8">NSP - Núcleo de Segurança do Paciente</p>
+                    <h4 class="text-3xl font-bold mb-4 tracking-tight text-slate-900">CCIH, NSP e Higienização</h4>
+                    <p class="text-blue-600 text-xs font-bold uppercase tracking-widest mb-8">Controle de Riscos e Ambiência</p>
                     
                     <div class="space-y-6 flex-grow">
-                        <div class="border-l-2 border-gray-100 pl-6">
-                            <h5 class="text-sm font-bold text-black uppercase tracking-widest mb-2">Gestão de Incidentes</h5>
-                            <p class="text-gray-500 text-sm font-light leading-relaxed">Notificação eletrônica de eventos adversos (never events) e near misses com workflow de investigação.</p>
+                        <div class="border-l-2 border-blue-100 pl-6 hover:border-blue-300 transition-colors">
+                            <h5 class="text-sm font-bold text-slate-800 uppercase tracking-widest mb-2">Controle de Infecções e Bundles</h5>
+                            <p class="text-slate-500 text-sm font-light">Monitoramento de IRAS, isolamentos e protocolos de prevenção (PAV, ITU) com índices SAPS3/SIRS.</p>
                         </div>
-                        <div class="border-l-2 border-gray-100 pl-6">
-                            <h5 class="text-sm font-bold text-black uppercase tracking-widest mb-2">Análise de Causa Raiz</h5>
-                            <p class="text-gray-500 text-sm font-light leading-relaxed">Ferramentas nativas para análise (Ishikawa/Londres) e geração de Planos de Ação (5W2H).</p>
+                        <div class="border-l-2 border-blue-100 pl-6 hover:border-blue-300 transition-colors">
+                            <h5 class="text-sm font-bold text-slate-800 uppercase tracking-widest mb-2">Segurança do Paciente</h5>
+                            <p class="text-slate-500 text-sm font-light">Registro de eventos adversos com upload de documentos e análise de causa raiz nativa.</p>
                         </div>
-                        <div class="border-l-2 border-gray-100 pl-6">
-                            <h5 class="text-sm font-bold text-black uppercase tracking-widest mb-2">Cultura de Segurança</h5>
-                            <p class="text-gray-500 text-sm font-light leading-relaxed">Monitoramento de metas internacionais, indicadores RDC 36 e suporte a acreditação.</p>
+                        <div class="border-l-2 border-blue-100 pl-6 hover:border-blue-300 transition-colors">
+                            <h5 class="text-sm font-bold text-slate-800 uppercase tracking-widest mb-2">Higienização e Produtos Químicos</h5>
+                            <p class="text-slate-500 text-sm font-light">Checklists de verificação, gestão de FISPQ (GHS) e alertas de incompatibilidade química.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tecnologia e Infraestrutura -->
+            <div class="mt-8 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-blue-50 rounded-lg text-blue-600">
+                            <i class="fas fa-file-upload"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-1">Gestão de Ficheiros</h6>
+                            <p class="text-xs text-slate-500">Upload em lote vinculado automaticamente aos eventos registrados.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-blue-50 rounded-lg text-blue-600">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-1">Notificações</h6>
+                            <p class="text-xs text-slate-500">Alertas críticos e relatórios automáticos via e-mail em tempo real.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-blue-50 rounded-lg text-blue-600">
+                            <i class="fas fa-user-lock"></i>
+                        </div>
+                        <div>
+                            <h6 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-1">Segurança da Informação</h6>
+                            <p class="text-xs text-slate-500">Controle rigoroso de perfis, autenticação e logs de auditoria total.</p>
                         </div>
                     </div>
                 </div>
@@ -282,69 +379,56 @@
         </div>
     </section>
 
-    <!-- Metodologia AGF (TEXTO INTEGRAL ATUALIZADO) -->
+    <!-- Metodologia AGF -->
     <section id="metodologia" class="py-32 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-20 items-start">
                 <div>
                     <span class="text-blue-600 font-bold text-xs uppercase tracking-[0.3em] mb-4 block">Governança Objetiva</span>
-                    <h3 class="text-5xl font-light text-black mb-8 italic tracking-tight">AGF — <span class="font-bold">ARGUS GATE FRAMEWORK</span></h3>
-                    <p class="text-xl font-bold text-blue-700 mb-6 uppercase tracking-wider">Visão Contínua, Decisão Controlada e Avanço Consciente</p>
-                    
-                    <div class="text-gray-600 font-light leading-relaxed space-y-6 mb-12">
-                        <p>A <strong>AGF – Argus Gate Framework</strong> é a metodologia proprietária da Baumgratz Code para condução de projetos complexos com governança objetiva, foco em valor e previsibilidade de resultados.</p>
-                        <p>Inspirada nas melhores práticas do PMI e nos princípios da metodologia Ágil, a AGF organiza o ciclo de vida do projeto por meio de <strong>GATES decisórios</strong>, que funcionam como portas de qualificação obrigatória para a evolução do projeto.</p>
-                        
-                        <div class="bg-gray-50 p-6 rounded border-l-4 border-blue-600 italic">
-                            <ul class="space-y-2">
-                                <li>• Cada Gate representa um ponto formal de decisão.</li>
-                                <li>• O projeto só avança quando 100% dos critérios de qualificação daquele Gate são atendidos.</li>
-                                <li>• Não há avanço parcial, exceções implícitas ou decisões informais.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <h4 class="text-xs font-black uppercase tracking-[0.3em] mb-8 text-black">Princípios da AGF</h4>
-                    <div class="grid gap-6">
-                        <div class="border-l-2 border-blue-100 pl-6">
-                            <p><strong>Visão Contínua:</strong> acompanhamento permanente do projeto, com transparência de riscos, dependências e impactos.</p>
-                        </div>
-                        <div class="border-l-2 border-blue-100 pl-6">
-                            <p><strong>Decisão Controlada:</strong> avanços sempre baseados em critérios objetivos, evidências e alinhamento entre as partes.</p>
-                        </div>
-                        <div class="border-l-2 border-blue-100 pl-6">
-                            <p><strong>Avanço Consciente:</strong> cada etapa só inicia quando existem condições reais de sucesso, protegendo o investimento do cliente.</p>
+                    <h3 class="text-5xl font-light text-slate-900 mb-8 italic tracking-tight">AGF — <span class="font-bold text-blue-700">ARGUS GATE FRAMEWORK</span></h3>
+                    <div class="text-slate-600 font-light leading-relaxed space-y-6 mb-12">
+                        <p class="text-lg">A <strong>AGF – Argus Gate Framework</strong> é a metodologia proprietária da Baumgratz Code para condução de projetos com foco em valor e previsibilidade.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+                            <div class="bg-blue-50 p-6 rounded-xl">
+                                <i class="fas fa-eye text-blue-600 mb-4 text-xl"></i>
+                                <h5 class="font-bold text-slate-900 text-sm uppercase mb-2">Visão Contínua</h5>
+                                <p class="text-xs">Acompanhamento permanente com transparência total de riscos e impactos.</p>
+                            </div>
+                            <div class="bg-blue-50 p-6 rounded-xl">
+                                <i class="fas fa-check-double text-blue-600 mb-4 text-xl"></i>
+                                <h5 class="font-bold text-slate-900 text-sm uppercase mb-2">Decisão Controlada</h5>
+                                <p class="text-xs">Avanços baseados em critérios objetivos e alinhamento estratégico.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="lg:sticky lg:top-32">
-                    <div class="bg-gray-50 p-10 rounded-sm border border-gray-100 shadow-sm">
-                        <h4 class="text-xs font-black uppercase tracking-[0.3em] mb-10 text-gray-400">Estrutura de Governança por Gates</h4>
+                    <div class="bg-gradient-to-br from-blue-50 to-white p-10 rounded-2xl border border-blue-100 shadow-xl shadow-blue-500/5">
+                        <h4 class="text-xs font-black uppercase tracking-[0.3em] mb-10 text-blue-400">Estrutura de Governança por Gates</h4>
                         <div class="space-y-0">
                             <div class="agf-gate">
-                                <h5 class="text-sm font-bold text-black mb-1">Gate 1 – Vendas</h5>
-                                <p class="text-xs text-gray-500">decisão consciente de investimento.</p>
+                                <h5 class="text-sm font-bold text-slate-900 mb-1">Gate 1 – Vendas</h5>
+                                <p class="text-xs text-slate-500">Decisão consciente de investimento.</p>
                             </div>
                             <div class="agf-gate">
-                                <h5 class="text-sm font-bold text-black mb-1">Gate 2 – Arquitetura</h5>
-                                <p class="text-xs text-gray-500">validação técnica e operacional da solução.</p>
+                                <h5 class="text-sm font-bold text-slate-900 mb-1">Gate 2 – Arquitetura</h5>
+                                <p class="text-xs text-slate-500">Validação técnica e operacional.</p>
                             </div>
                             <div class="agf-gate">
-                                <h5 class="text-sm font-bold text-black mb-1">Gate 3 – Transição Interna</h5>
-                                <p class="text-xs text-gray-500">alinhamento interno antes da execução.</p>
+                                <h5 class="text-sm font-bold text-slate-900 mb-1">Gate 3 – Transição Interna</h5>
+                                <p class="text-xs text-slate-500">Alinhamento antes da execução.</p>
                             </div>
                             <div class="agf-gate">
-                                <h5 class="text-sm font-bold text-black mb-1">Gate 4 – Onboarding</h5>
-                                <p class="text-xs text-gray-500">kickoff, governança e autorização formal da execução.</p>
+                                <h5 class="text-sm font-bold text-slate-900 mb-1">Gate 4 – Onboarding</h5>
+                                <p class="text-xs text-slate-500">Kickoff e governança formal.</p>
                             </div>
                             <div class="agf-gate">
-                                <h5 class="text-sm font-bold text-black mb-1">Gate 5 – Implantação</h5>
-                                <p class="text-xs text-gray-500">execução controlada (iniciação, planejamento, execução, monitoramento e encerramento).</p>
+                                <h5 class="text-sm font-bold text-slate-900 mb-1">Gate 5 – Implantação</h5>
+                                <p class="text-xs text-slate-500">Execução controlada e monitorizada.</p>
                             </div>
                             <div class="agf-gate">
-                                <h5 class="text-sm font-bold text-black mb-1">Gate 6 – Suporte</h5>
-                                <p class="text-xs text-gray-500">passagem de bastão formal e encerramento do projeto.</p>
+                                <h5 class="text-sm font-bold text-slate-900 mb-1">Gate 6 – Suporte</h5>
+                                <p class="text-xs text-slate-500">Passagem de bastão e encerramento.</p>
                             </div>
                         </div>
                     </div>
@@ -354,35 +438,34 @@
     </section>
 
     <!-- Rodapé -->
-    <footer id="contato" class="bg-black text-white pt-32 pb-16">
+    <footer id="contato" class="footer-custom text-white pt-32 pb-16">
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-3 gap-16 mb-24">
                 <div class="col-span-1">
                     <span class="text-3xl font-bold tracking-[0.2em] uppercase block mb-4">Baumgratz</span>
-                    <p class="text-gray-500 font-light leading-relaxed">
+                    <p class="text-blue-200/50 font-light leading-relaxed">
                         Sede Administrativa<br>
                         Juiz de Fora, Minas Gerais<br>
                         Brasil
                     </p>
                 </div>
                 <div>
-                    <h5 class="text-blue-500 font-bold text-xs uppercase tracking-widest mb-8">Navegação</h5>
-                    <ul class="space-y-4 font-light text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-white transition-colors">Início</a></li>
-                        <li><a href="#sobre" class="hover:text-white transition-colors">Sobre o Argus</a></li>
-                        <li><a href="#solucao" class="hover:text-white transition-colors">Módulos</a></li>
-                        <li><a href="#metodologia" class="hover:text-white transition-colors">Metodologia</a></li>
+                    <h5 class="text-blue-400 font-bold text-xs uppercase tracking-widest mb-8">Navegação</h5>
+                    <ul class="space-y-4 font-light text-blue-100/60 text-sm">
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">Início</a></li>
+                        <li><a href="#sobre" class="hover:text-blue-400 transition-colors">Sobre o Argus</a></li>
+                        <li><a href="#solucao" class="hover:text-blue-400 transition-colors">Módulos</a></li>
+                        <li><a href="#metodologia" class="hover:text-blue-400 transition-colors">Metodologia</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="text-blue-500 font-bold text-xs uppercase tracking-widest mb-8">Contato</h5>
-                    <p class="text-white text-xl font-light mb-8">comercial@baumgratzcode.com.br</p>
-                    <div class="flex space-x-6">
-                        <a href="#" class="text-gray-500 hover:text-white text-xl transition-colors"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+                    <h5 class="text-blue-400 font-bold text-xs uppercase tracking-widest mb-8">Contacto</h5>
+                    <p class="text-white text-xl font-light mb-4">comercial@baumgratzcode.com.br</p>
+                    <a href="mailto:comercial@baumgratzcode.com.br" class="inline-block border border-blue-500 text-blue-400 px-6 py-2 rounded text-xs uppercase tracking-widest hover:bg-blue-500 hover:text-white transition-all">Enviar Email</a>
                 </div>
             </div>
-            <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] text-gray-600 font-bold uppercase tracking-widest">
+            <div class="pt-12 border-t border-blue-900/50 flex flex-col md:flex-row justify-between items-center text-[10px] text-blue-300/40 font-bold uppercase tracking-widest">
                 <p>© 2025 Baumgratz Code. Todos os direitos reservados.</p>
                 <p>Argus Watch® - Intelligence Applied to Health</p>
             </div>
