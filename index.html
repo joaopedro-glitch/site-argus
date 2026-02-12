@@ -166,9 +166,8 @@
             line-height: 1;
         }
         
-        /* Ajuste da logo da navegação para alinhar com a altura do texto dos links */
         .brand-logo-nav {
-            height: 24px; /* Reduzido para aproximar da altura da fonte dos links */
+            height: 24px; 
             width: auto;
         }
         
@@ -431,7 +430,7 @@
                 <p class="text-blue-100/50 mt-4 font-light">Preencha o formulário abaixo e nossa equipe entrará em contato.</p>
             </div>
 
-            <form action="https://formsubmit.co/comercial@argusbc.com.br" method="POST" class="bg-white/5 backdrop-blur-sm p-8 md:p-12 rounded-3xl border border-white/10 shadow-2xl">
+            <form action="https://formsubmit.co/joaopedro@grizendi.com.br" method="POST" class="bg-white/5 backdrop-blur-sm p-8 md:p-12 rounded-3xl border border-white/10 shadow-2xl">
                 <div class="grid md:grid-cols-2 gap-6 mb-6">
                     <div>
                         <label class="block text-xs font-bold text-blue-300 uppercase tracking-widest mb-2">Nome Completo</label>
@@ -458,6 +457,8 @@
                 </div>
                 
                 <input type="hidden" name="_subject" value="Nova Solicitação de Informações - ARGUS Watch">
+                <!-- Redirecionamento após envio -->
+                <input type="hidden" name="_next" value="https://seusite.com.br/obrigado">
                 
                 <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-blue-900/40 uppercase tracking-[0.2em] text-sm">
                     Enviar Solicitação <i class="fas fa-paper-plane ml-2 text-white"></i>
@@ -491,7 +492,7 @@
                 </div>
                 <div>
                     <h5 class="text-blue-400 font-bold text-xs uppercase tracking-widest mb-8">Contato</h5>
-                    <p class="text-white text-xl font-light mb-4">comercial@argusbc.com.br</p>
+                    <p class="text-white text-xl font-light mb-4 text-justify">comercial@argusbc.com.br</p>
                     <a href="mailto:comercial@argusbc.com.br" class="inline-block border border-blue-500 text-blue-400 px-6 py-2 rounded text-xs uppercase tracking-widest hover:bg-blue-500 hover:text-white transition-all">Enviar Email</a>
                 </div>
             </div>
