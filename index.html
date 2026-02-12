@@ -166,12 +166,12 @@
             line-height: 1;
         }
         
+        /* Ajuste da logo da navegação para alinhar com a altura do texto dos links */
         .brand-logo-nav {
-            height: 40px;
+            height: 24px; /* Reduzido para aproximar da altura da fonte dos links */
             width: auto;
         }
         
-        /* Logo do rodapé reduzida significativamente (max-width de 140px) */
         .brand-logo-footer {
             height: auto;
             width: 100%;
@@ -189,7 +189,7 @@
 
     <!-- Navegação -->
     <nav class="fixed w-full z-50 bg-[#000B1D]/80 backdrop-blur-md border-b border-blue-900/30">
-        <div class="max-w-7xl mx-auto px-6 h-24 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             <div class="flex items-center">
                 <img src="https://i.postimg.cc/j2G6pmvr/Baumgratz-Code-logo-NEGATIVA-HORIZONTAL3.png" alt="Baumgratz Code" class="brand-logo-nav">
             </div>
@@ -230,7 +230,7 @@
                     <div class="absolute top-0 right-0 p-4 opacity-5">
                         <i class="fas fa-quote-right text-8xl text-blue-900"></i>
                     </div>
-                    <p class="text-xl md:text-2xl leading-relaxed text-slate-800 font-normal drop-cap">
+                    <p class="text-xl md:text-2xl leading-relaxed text-slate-800 font-normal drop-cap text-justify">
                         A <span class="text-blue-700 font-semibold">Baumgratz Code</span> apresenta o <strong>ARGUS Watch</strong>, uma plataforma corporativa de monitoramento e gestão de riscos assistenciais, focada na integração de <strong>Inteligência Artificial</strong> para o Controle de Infecções e Segurança do Paciente.
                     </p>
                 </div>
@@ -240,17 +240,17 @@
                         <h4 class="flex items-center gap-3 text-blue-700 font-bold text-sm uppercase tracking-widest mb-6">
                             <span class="w-8 h-px bg-blue-600"></span> Suporte Especializado
                         </h4>
-                        <p class="text-balanced mb-6">
+                        <p class="text-balanced mb-6 text-justify">
                             O ARGUS Watch conta com ferramentas integradas de Controle de Infecção Hospitalar (CCIH) e Segurança do Paciente (NSP), promovendo previsibilidade, redução de riscos assistenciais e eficiência operacional.
                         </p>
-                        <p class="text-balanced text-slate-500">
+                        <p class="text-balanced text-slate-500 text-justify">
                             A tecnologia atua como uma camada de inteligência sobre os dados, reduzindo a carga cognitiva das equipes e focando no que realmente importa: a vida e a segurança hospitalar.
                         </p>
                     </div>
                     <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 flex flex-col justify-center">
                         <i class="fas fa-microscope text-blue-600 text-3xl mb-6"></i>
                         <h4 class="text-xl font-bold text-slate-900 mb-4">Visão 360º da Assistência</h4>
-                        <p class="text-balanced text-slate-600">
+                        <p class="text-balanced text-slate-600 text-justify">
                             Integramos dados clínicos, laboratoriais e de higienização em uma interface única, garantindo que nenhum risco passe despercebido pelos gestores da qualidade.
                         </p>
                     </div>
@@ -282,23 +282,23 @@
                     <div class="space-y-6 flex-grow">
                         <div class="border-l-2 border-blue-500/30 pl-6 hover:border-blue-400 transition-colors">
                             <h5 class="text-sm font-bold text-blue-100 uppercase tracking-widest mb-1">Controle de Infecções (IRAS)</h5>
-                            <p class="text-blue-100/60 text-sm font-light">Monitoramento rigoroso de PAV, ITU, ICS e gerenciamento de isolamentos (contato, gotícula, aerossol).</p>
+                            <p class="text-blue-100/60 text-sm font-light text-justify">Monitoramento rigoroso de PAV, ITU, ICS e gerenciamento de isolamentos (contato, gotícula, aerossol).</p>
                         </div>
                         <div class="border-l-2 border-blue-500/30 pl-6 hover:border-blue-400 transition-colors">
                             <h5 class="text-sm font-bold text-blue-100 uppercase tracking-widest mb-1">Gestão Microbiológica e Lab</h5>
-                            <p class="text-blue-100/60 text-sm font-light">Integração laboratorial para culturas, antibiogramas e monitoramento de antimicrobianos.</p>
+                            <p class="text-blue-100/60 text-sm font-light text-justify">Integração laboratorial para culturas, antibiogramas e monitoramento de antimicrobianos.</p>
                         </div>
                         <div class="border-l-2 border-blue-500/30 pl-6 hover:border-blue-400 transition-colors">
                             <h5 class="text-sm font-bold text-blue-100 uppercase tracking-widest mb-1">Cirurgias e ISC</h5>
-                            <p class="text-blue-100/60 text-sm font-light">Classificação de risco cirúrgico (Potencial, Limpa, etc.) e controle de Infecção de Sítio Cirúrgico.</p>
+                            <p class="text-blue-100/60 text-sm font-light text-justify">Classificação de risco cirúrgico (Potencial, Limpa, etc.) e controle de Infecção de Sítio Cirúrgico.</p>
                         </div>
                         <div class="border-l-2 border-blue-500/30 pl-6 hover:border-blue-400 transition-colors">
                             <h5 class="text-sm font-bold text-blue-100 uppercase tracking-widest mb-1">Higienização e Manutenção</h5>
-                            <p class="text-blue-100/60 text-sm font-light">Gerenciamento de ambientes, planos de limpeza programada e checklists de verificação.</p>
+                            <p class="text-blue-100/60 text-sm font-light text-justify">Gerenciamento de ambientes, planos de limpeza programada e checklists de verificação.</p>
                         </div>
                         <div class="border-l-2 border-blue-500/30 pl-6 hover:border-blue-400 transition-colors">
                             <h5 class="text-sm font-bold text-blue-100 uppercase tracking-widest mb-1">Gestão de Produtos (FISPQ)</h5>
-                            <p class="text-blue-100/60 text-sm font-light">Controle conforme normas GHS, toxicologia e alertas de incompatibilidade química.</p>
+                            <p class="text-blue-100/60 text-sm font-light text-justify">Controle conforme normas GHS, toxicologia e alertas de incompatibilidade química.</p>
                         </div>
                     </div>
                 </div>
@@ -316,23 +316,23 @@
                     <div class="space-y-6 flex-grow">
                         <div class="border-l-2 border-blue-100 pl-6 hover:border-blue-300 transition-colors">
                             <h5 class="text-sm font-bold text-slate-800 uppercase tracking-widest mb-1">Eventos Adversos e Causa Raiz</h5>
-                            <p class="text-slate-500 text-sm font-light">Registro detalhado de eventos com upload de evidências e ferramentas de análise de causa raiz.</p>
+                            <p class="text-slate-500 text-sm font-light text-justify">Registro detalhado de eventos com upload de evidências e ferramentas de análise de causa raiz.</p>
                         </div>
                         <div class="border-l-2 border-blue-100 pl-6 hover:border-blue-300 transition-colors">
                             <h5 class="text-sm font-bold text-slate-800 uppercase tracking-widest mb-1">Módulo de Bundles e Escores</h5>
-                            <p class="text-slate-500 text-sm font-light">Monitoramento de prevenção (PAV, ITU) e índices de gravidade como SAPS3 e SIRS.</p>
+                            <p class="text-slate-500 text-sm font-light text-justify">Monitoramento de prevenção (PAV, ITU) e índices de gravidade como SAPS3 e SIRS.</p>
                         </div>
                         <div class="border-l-2 border-blue-100 pl-6 hover:border-blue-300 transition-colors">
                             <h5 class="text-sm font-bold text-slate-800 uppercase tracking-widest mb-1">Monitoramento de Sinais Vitais</h5>
-                            <p class="text-slate-500 text-sm font-light">Alertas automáticos de alterações clínicas para pronta resposta assistencial.</p>
+                            <p class="text-slate-500 text-sm font-light text-justify">Alertas automáticos de alterações clínicas para pronta resposta assistencial.</p>
                         </div>
                         <div class="border-l-2 border-blue-100 pl-6 hover:border-blue-300 transition-colors">
                             <h5 class="text-sm font-bold text-slate-800 uppercase tracking-widest mb-1">Internações e Dispositivos</h5>
-                            <p class="text-slate-500 text-sm font-light">Rastreamento de movimentação e controle do tempo de permanência de dispositivos invasivos.</p>
+                            <p class="text-slate-500 text-sm font-light text-justify">Rastreamento de movimentação e controle do tempo de permanência de dispositivos invasivos.</p>
                         </div>
                         <div class="border-l-2 border-blue-100 pl-6 hover:border-blue-300 transition-colors">
                             <h5 class="text-sm font-bold text-slate-800 uppercase tracking-widest mb-1">Gestão de Ficheiros e Auditoria</h5>
-                            <p class="text-slate-500 text-sm font-light">Upload em lote vinculado a eventos e log completo para conformidade regulatória.</p>
+                            <p class="text-slate-500 text-sm font-light text-justify">Upload em lote vinculado a eventos e log completo para conformidade regulatória.</p>
                         </div>
                     </div>
                 </div>
@@ -347,7 +347,7 @@
                         </div>
                         <div>
                             <h6 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-1">Sistema de Notificações Inteligentes</h6>
-                            <p class="text-xs text-slate-500">Envio automático de alertas críticos e relatórios periódicos por e-mail para as equipes responsáveis.</p>
+                            <p class="text-xs text-slate-500 text-justify">Envio automático de alertas críticos e relatórios periódicos por e-mail para as equipes responsáveis.</p>
                         </div>
                     </div>
                     <div class="flex items-start gap-4">
@@ -356,7 +356,7 @@
                         </div>
                         <div>
                             <h6 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-1">Infraestrutura e Segurança</h6>
-                            <p class="text-xs text-slate-500">Autenticação segura, controle rigoroso de perfis de acesso e logs de auditoria de todas as ações.</p>
+                            <p class="text-xs text-slate-500 text-justify">Autenticação segura, controle rigoroso de perfis de acesso e logs de auditoria de todas as ações.</p>
                         </div>
                     </div>
                 </div>
@@ -372,17 +372,17 @@
                     <span class="text-blue-600 font-bold text-xs uppercase tracking-[0.3em] mb-4 block">Governança Objetiva</span>
                     <h3 class="text-5xl font-light text-slate-900 mb-8 italic tracking-tight">AGF — <span class="font-bold text-blue-700">ARGUS GATE FRAMEWORK</span></h3>
                     <div class="text-slate-600 font-light leading-relaxed space-y-6 mb-12">
-                        <p class="text-lg">A <strong>AGF – Argus Gate Framework</strong> é a metodologia proprietária da Baumgratz Code para condução de projetos com foco em valor e previsibilidade.</p>
+                        <p class="text-lg text-justify">A <strong>AGF – Argus Gate Framework</strong> é a metodologia proprietária da Baumgratz Code para condução de projetos com foco em valor e previsibilidade.</p>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
                             <div class="bg-blue-50 p-6 rounded-xl">
                                 <i class="fas fa-eye text-blue-600 mb-4 text-xl"></i>
                                 <h5 class="font-bold text-slate-900 text-sm uppercase mb-2">Visão Contínua</h5>
-                                <p class="text-xs">Acompanhamento permanente com transparência total de riscos e impactos.</p>
+                                <p class="text-xs text-justify">Acompanhamento permanente com transparência total de riscos e impactos.</p>
                             </div>
                             <div class="bg-blue-50 p-6 rounded-xl">
                                 <i class="fas fa-check-double text-blue-600 mb-4 text-xl"></i>
                                 <h5 class="font-bold text-slate-900 text-sm uppercase mb-2">Decisão Controlada</h5>
-                                <p class="text-xs">Avanços baseados em critérios objetivos e alinhamento estratégico.</p>
+                                <p class="text-xs text-justify">Avanços baseados em critérios objetivos e alinhamento estratégico.</p>
                             </div>
                         </div>
                     </div>
@@ -473,9 +473,8 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-3 gap-16 mb-24">
                 <div class="col-span-1">
-                    <!-- Logo reduzida significativamente -->
                     <img src="https://i.postimg.cc/j2G6pmvr/Baumgratz-Code-logo-NEGATIVA-HORIZONTAL3.png" alt="Baumgratz Code" class="brand-logo-footer mb-6">
-                    <p class="text-blue-200/50 font-light leading-relaxed">
+                    <p class="text-blue-200/50 font-light leading-relaxed text-justify">
                         Sede Administrativa<br>
                         Juiz de Fora, Minas Gerais<br>
                         Brasil
