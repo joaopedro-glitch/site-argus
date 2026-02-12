@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARGUS Watch | Baumgratz Code</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Outfit:wght@200;300;400;600;700&display=swap');
@@ -15,7 +13,6 @@
             --bg-deep-blue: #000B1D;
             --accent-blue: #0055FF;
             --bright-blue: #00D1FF;
-            --glass-blue: rgba(0, 85, 255, 0.05);
         }
 
         body {
@@ -42,15 +39,7 @@
             width: 90%;
             margin: 0 auto 1.5rem;
             transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             z-index: 10;
-        }
-        
-        .logo-container:hover {
-            transform: scale(1.02);
         }
 
         .main-logo {
@@ -58,66 +47,27 @@
             height: auto;
             max-height: 280px;
             object-fit: contain;
-            border-radius: 8px;
-        }
-
-        /* Nav links */
-        .nav-link {
-            position: relative;
-            transition: color 0.4s ease;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--bright-blue);
-            transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
         }
 
         /* Cards */
         .module-card-dark {
             background: linear-gradient(145deg, #001A4D, #000B1D);
             border: 1px solid rgba(0, 209, 255, 0.2);
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .module-card-dark:hover {
-            transform: translateY(-12px);
-            border-color: var(--bright-blue);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 85, 255, 0.15);
+            transition: all 0.5s ease;
         }
 
         .module-card-light {
             background: white;
             border: 1px solid #e2e8f0;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.5s ease;
         }
 
-        .module-card-light:hover {
-            transform: translateY(-12px);
-            border-color: var(--accent-blue);
-            box-shadow: 0 30px 60px rgba(0, 85, 255, 0.08);
-        }
-
-        /* Timeline */
+        /* Timeline AGF */
         .agf-gate {
             border-left: 2px solid #cbd5e1;
             padding-left: 2rem;
             position: relative;
             padding-bottom: 2rem;
-            transition: border-color 0.4s ease;
-        }
-
-        .agf-gate:hover {
-            border-left-color: var(--accent-blue);
         }
 
         .agf-gate::before {
@@ -129,45 +79,35 @@
             height: 10px;
             border-radius: 50%;
             background: var(--accent-blue);
-            box-shadow: 0 0 10px var(--accent-blue);
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .agf-gate:hover::before {
-            transform: scale(1.5);
+        /* Form Estilizado */
+        .glass-input {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
 
-        /* Botão flutuante */
+        .glass-input:focus {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: var(--bright-blue);
+            outline: none;
+        }
+
         #backToTop {
             position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 50px;
-            height: 50px;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
             background: var(--accent-blue);
             color: white;
             border-radius: 50%;
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
             z-index: 100;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 10px 20px rgba(0, 85, 255, 0.3);
-        }
-
-        #backToTop.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .footer-custom {
-            background: #000B1D;
-            position: relative;
         }
 
         .drop-cap::first-letter {
@@ -178,550 +118,198 @@
             margin-right: 0.75rem;
             line-height: 1;
         }
-        
-        .brand-logo-nav {
-            height: 24px; 
-            width: auto;
-        }
-        
-        .brand-logo-footer {
-            height: auto;
-            width: 100%;
-            max-width: 140px; 
-            display: block;
-            opacity: 0.9;
-        }
-
-        /* Modais */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            background: rgba(0, 11, 29, 0.85);
-            backdrop-filter: blur(12px);
-            align-items: center;
-            justify-content: center;
-            transition: opacity 0.4s ease;
-            padding: 1.5rem;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal-card {
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        /* Otimização de seções */
-        section {
-            padding-top: 8rem;
-            padding-bottom: 8rem;
-        }
-
-        /* Custom scrollbar for modal */
-        .modal-card::-webkit-scrollbar {
-            width: 4px;
-        }
-        .modal-card::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .modal-card::-webkit-scrollbar-thumb {
-            background: #2563eb;
-            border-radius: 10px;
-        }
     </style>
 </head>
 <body>
 
-    <!-- Modal de Contato (Pop-up solicitado) -->
-    <div id="contactModal" class="modal-overlay">
-        <div class="modal-card bg-slate-900 border border-white/10 p-8 md:p-12 rounded-[2.5rem] max-w-2xl w-full shadow-2xl scale-90 opacity-0 transition-all relative" id="contactModalContent">
-            
-            <button onclick="closeContactModal()" class="absolute top-6 right-6 text-white/40 hover:text-white transition-colors w-10 h-10 flex items-center justify-center rounded-full border border-white/10 hover:border-white/30">
-                <i class="fas fa-times"></i>
-            </button>
+    <button id="backToTop"><i class="fas fa-chevron-up"></i></button>
 
-            <div class="text-center mb-10">
-                <span class="text-blue-400 font-bold text-xs uppercase tracking-[0.3em] mb-3 block">Demonstração Exclusiva</span>
-                <h3 class="text-3xl font-light text-white italic tracking-tight">Fale com um <span class="font-bold text-blue-500">Especialista</span></h3>
-            </div>
-
-            <form id="argusForm" class="space-y-5">
-                <div class="grid md:grid-cols-2 gap-5">
-                    <div>
-                        <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-widest mb-2">Nome Completo</label>
-                        <input type="text" name="name" id="formName" required class="w-full bg-slate-800/50 border border-slate-700/50 rounded-xl px-5 py-3 text-white focus:outline-none focus:border-blue-500 transition-all placeholder:text-slate-600" placeholder="Seu nome">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-widest mb-2">Instituição / Empresa</label>
-                        <input type="text" name="company" id="formCompany" required class="w-full bg-slate-800/50 border border-slate-700/50 rounded-xl px-5 py-3 text-white focus:outline-none focus:border-blue-500 transition-all placeholder:text-slate-600" placeholder="Nome do hospital">
-                    </div>
-                </div>
-                <div class="grid md:grid-cols-2 gap-5">
-                    <div>
-                        <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-widest mb-2">E-mail Profissional</label>
-                        <input type="email" name="email" id="formEmail" required class="w-full bg-slate-800/50 border border-slate-700/50 rounded-xl px-5 py-3 text-white focus:outline-none focus:border-blue-500 transition-all placeholder:text-slate-600" placeholder="exemplo@email.com">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-widest mb-2">Telefone / WhatsApp</label>
-                        <input type="tel" name="phone" id="formPhone" class="w-full bg-slate-800/50 border border-slate-700/50 rounded-xl px-5 py-3 text-white focus:outline-none focus:border-blue-500 transition-all placeholder:text-slate-600" placeholder="(00) 00000-0000">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold text-blue-300 uppercase tracking-widest mb-2">Mensagem</label>
-                    <textarea name="message" id="formMessage" rows="3" required class="w-full bg-slate-800/50 border border-slate-700/50 rounded-xl px-5 py-3 text-white focus:outline-none focus:border-blue-500 transition-all resize-none placeholder:text-slate-600" placeholder="Como podemos ajudar sua instituição?"></textarea>
-                </div>
-                
-                <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-4 rounded-xl transition-all shadow-xl shadow-blue-900/40 uppercase tracking-[0.2em] text-xs flex items-center justify-center gap-3 active:scale-[0.98] mt-4">
-                    <span id="btnText">Enviar Solicitação</span>
-                    <i id="btnIcon" class="fas fa-paper-plane"></i>
-                    <i id="btnLoading" class="fas fa-circle-notch fa-spin hidden"></i>
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal de Sucesso -->
-    <div id="successModal" class="modal-overlay">
-        <div class="modal-card bg-white p-10 rounded-[2.5rem] max-w-sm w-full text-center shadow-2xl scale-90 opacity-0 transition-all" id="successModalContent">
-            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                <i class="fas fa-check text-4xl"></i>
-            </div>
-            <h4 class="text-2xl font-bold text-slate-900 mb-2">Mensagem Enviada!</h4>
-            <p class="text-slate-500 font-light mb-8">Obrigado pelo contato. Retornaremos em breve.</p>
-            <button onclick="closeSuccessModal()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition-colors uppercase tracking-widest text-xs">
-                Fechar
-            </button>
-        </div>
-    </div>
-
-    <button id="backToTop" title="Voltar ao topo">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
-    <!-- Navegação -->
-    <nav class="fixed w-full z-50 bg-[#000B1D]/80 backdrop-blur-md border-b border-blue-900/30">
+    <nav class="fixed w-full z-50 bg-[#000B1D]/90 backdrop-blur-md border-b border-blue-900/30">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-            <div class="flex items-center">
-                <img src="https://i.postimg.cc/j2G6pmvr/Baumgratz-Code-logo-NEGATIVA-HORIZONTAL3.png" alt="Baumgratz Code" class="brand-logo-nav">
+            <img src="https://i.postimg.cc/j2G6pmvr/Baumgratz-Code-logo-NEGATIVA-HORIZONTAL3.png" alt="Baumgratz Code" class="h-6">
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#sobre" class="text-white/70 hover:text-white text-xs uppercase tracking-widest font-light">Sobre</a>
+                <a href="#solucao" class="text-white/70 hover:text-white text-xs uppercase tracking-widest font-light">Ecossistema</a>
+                <a href="#metodologia" class="text-white/70 hover:text-white text-xs uppercase tracking-widest font-light">Metodologia</a>
+                <a href="#contato" class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded text-xs uppercase tracking-widest font-bold transition-all">Contato</a>
             </div>
-            <div class="hidden md:flex space-x-10 items-center">
-                <a href="#sobre" class="nav-link text-white/70 hover:text-white text-sm uppercase tracking-widest font-light">Sobre</a>
-                <a href="#solucao" class="nav-link text-white/70 hover:text-white text-sm uppercase tracking-widest font-light">Ecossistema</a>
-                <a href="#metodologia" class="nav-link text-white/70 hover:text-white text-sm uppercase tracking-widest font-light">Metodologia</a>
-                <!-- Botão de Contato que abre o pop-up -->
-                <button onclick="openContactModal()" class="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-md transition-all text-xs uppercase tracking-[0.2em] font-bold shadow-lg shadow-blue-900/20">Contato</button>
-            </div>
+            <a href="#contato" class="md:hidden bg-blue-600 text-white px-4 py-2 rounded text-[10px] uppercase font-bold">Contato</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <header class="hero-section px-6">
         <div class="max-w-5xl mx-auto z-10">
             <div class="logo-container">
-                <img src="https://i.postimg.cc/HkF8WbCd/WATCH.png" alt="ARGUS WATCH Logo" class="main-logo">
+                <img src="https://i.postimg.cc/HkF8WbCd/WATCH.png" alt="ARGUS WATCH" class="main-logo mx-auto">
             </div>
-            <p class="text-blue-100/70 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto tracking-wide mt-6">
+            <p class="text-blue-100/70 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto mt-6">
                 Monitorização Inteligente e Previsão de Riscos Assistenciais para Instituições de Saúde de Alta Performance.
             </p>
         </div>
-        <div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-            <div class="w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px]"></div>
-        </div>
     </header>
 
-    <!-- Secção Sobre -->
-    <section id="sobre" class="bg-white relative">
-        <div class="max-w-5xl mx-auto px-6 relative z-10">
-            <div class="text-center mb-24">
+    <section id="sobre" class="py-24 bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
                 <span class="text-blue-600 font-bold text-xs uppercase tracking-[0.3em] mb-4 block">Inteligência em Saúde</span>
-                <h3 class="text-5xl font-light text-slate-900 tracking-tight">O Futuro da <span class="font-bold text-blue-700">Gestão de Riscos</span></h3>
+                <h3 class="text-4xl font-light text-slate-900">O Futuro da <span class="font-bold text-blue-700">Gestão de Riscos</span></h3>
             </div>
-            
-            <div class="grid gap-16 text-slate-700 font-light text-lg">
-                <div class="relative p-10 bg-blue-50/30 rounded-3xl border-l-4 border-blue-600 overflow-hidden shadow-sm">
-                    <div class="absolute top-0 right-0 p-4 opacity-5">
-                        <i class="fas fa-quote-right text-8xl text-blue-900"></i>
-                    </div>
-                    <p class="text-xl md:text-2xl leading-relaxed text-slate-800 font-normal drop-cap text-justify">
+            <div class="space-y-12">
+                <div class="p-8 bg-blue-50/50 rounded-3xl border-l-4 border-blue-600">
+                    <p class="text-xl leading-relaxed text-slate-800 drop-cap text-justify">
                         A <span class="text-blue-700 font-semibold">Baumgratz Code</span> apresenta o <strong>ARGUS Watch</strong>, uma plataforma corporativa de monitoramento e gestão de riscos assistenciais, focada na integração de <strong>Inteligência Artificial</strong> para o Controle de Infecções e Segurança do Paciente.
                     </p>
                 </div>
-
-                <div class="grid md:grid-cols-2 gap-12 items-stretch">
-                    <div class="flex flex-col">
-                        <h4 class="flex items-center gap-3 text-blue-700 font-bold text-sm uppercase tracking-widest mb-6">
-                            <span class="w-8 h-px bg-blue-600"></span> Suporte Especializado
-                        </h4>
-                        <p class="mb-6 text-justify leading-relaxed">
-                            O ARGUS Watch conta com ferramentas integradas de Controle de Infecção Hospitalar (CCIH) e Segurança do Paciente (NSP), promovendo previsibilidade, redução de riscos assistenciais e eficiência operacional.
-                        </p>
-                        <p class="text-slate-500 text-justify leading-relaxed">
-                            A tecnologia atua como uma camada de inteligência sobre os dados, reduzindo a carga cognitiva das equipes e focando no que realmente importa: a vida e a segurança hospitalar.
-                        </p>
-                    </div>
-                    <div class="bg-slate-50 p-8 rounded-2xl border border-slate-100 flex flex-col justify-center shadow-sm">
-                        <i class="fas fa-microscope text-blue-600 text-3xl mb-6"></i>
-                        <h4 class="text-xl font-bold text-slate-900 mb-4">Visão 360º da Assistência</h4>
-                        <p class="text-slate-600 text-justify leading-relaxed">
-                            Integramos dados clínicos, laboratoriais e de higienização em uma interface única, garantindo que nenhum risco passe despercebido pelos gestores da qualidade.
-                        </p>
-                    </div>
+                <div class="grid md:grid-cols-2 gap-8 text-slate-600 leading-relaxed text-justify">
+                    <p>O ARGUS Watch conta com ferramentas integradas de Controle de Infecção Hospitalar (CCIH) e Segurança do Paciente (NSP), promovendo previsibilidade, redução de riscos assistenciais e eficiência operacional.</p>
+                    <p>A tecnologia atua como uma camada de inteligência sobre os dados, reduzindo a carga cognitiva das equipes e focando no que realmente importa: a vida e a segurança hospitalar.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Ecossistema Argus / Módulos -->
-    <section id="solucao" class="bg-slate-50 overflow-hidden relative">
-        <div class="absolute -right-20 top-40 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl"></div>
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="mb-20 text-center md:text-left">
+    <section id="solucao" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16">
                 <span class="text-blue-600 font-bold text-xs uppercase tracking-[0.3em] mb-4 block">Ecossistema Argus</span>
-                <h3 class="text-4xl font-light text-slate-900 leading-tight max-w-3xl">Módulos de Controle e <span class="font-bold text-blue-800">Segurança</span>.</h3>
+                <h3 class="text-3xl font-light text-slate-900">Módulos de Controle e <span class="font-bold text-blue-800">Segurança</span>.</h3>
             </div>
             
-            <div class="grid lg:grid-cols-2 gap-8 mb-12">
-                <!-- Módulo CCIH e Higienização -->
-                <div class="module-card-dark p-10 text-white rounded-2xl relative group flex flex-col h-full shadow-2xl">
-                    <div class="mb-8 flex items-center justify-between">
-                        <div class="w-16 h-16 bg-blue-600/20 rounded-full flex items-center justify-center border border-blue-400/30">
-                            <i class="fas fa-bacteria text-3xl text-blue-300"></i>
-                        </div>
-                        <span class="text-[10px] font-black uppercase tracking-widest text-blue-300/40">Controle de Infecção</span>
-                    </div>
-                    <h4 class="text-3xl font-bold mb-4 tracking-tight text-white">CCIH e Higienização</h4>
-                    
-                    <div class="space-y-6 flex-grow">
-                        <div class="border-l-2 border-blue-500/30 pl-6 hover:border-blue-400 transition-all duration-500">
-                            <h5 class="text-sm font-bold text-blue-100 uppercase tracking-widest mb-1">Controle de Infecções (IRAS)</h5>
-                            <p class="text-blue-100/60 text-sm font-light text-justify">Monitoramento rigoroso de PAV, ITU, ICS e gerenciamento de isolamentos (contato, gotícula, aerossol).</p>
-                        </div>
-                        <div class="border-l-2 border-blue-500/30 pl-6 hover:border-blue-400 transition-all duration-500">
-                            <h5 class="text-sm font-bold text-blue-100 uppercase tracking-widest mb-1">Gestão Microbiológica e Lab</h5>
-                            <p class="text-blue-100/60 text-sm font-light text-justify">Integração laboratorial para culturas, antibiogramas e monitoramento de antimicrobianos.</p>
-                        </div>
-                        <div class="border-l-2 border-blue-500/30 pl-6 hover:border-blue-400 transition-all duration-500">
-                            <h5 class="text-sm font-bold text-blue-100 uppercase tracking-widest mb-1">Cirurgias e ISC</h5>
-                            <p class="text-blue-100/60 text-sm font-light text-justify">Classificação de risco cirúrgico (Potencial, Limpa, etc.) e controle de Infecção de Sítio Cirúrgico.</p>
-                        </div>
-                        <div class="border-l-2 border-blue-500/30 pl-6 hover:border-blue-400 transition-all duration-500">
-                            <h5 class="text-sm font-bold text-blue-100 uppercase tracking-widest mb-1">Higienização e Manutenção</h5>
-                            <p class="text-blue-100/60 text-sm font-light text-justify">Gerenciamento de ambientes, planos de limpeza programada e checklists de verificação.</p>
-                        </div>
-                        <div class="border-l-2 border-blue-500/30 pl-6 hover:border-blue-400 transition-all duration-500">
-                            <h5 class="text-sm font-bold text-blue-100 uppercase tracking-widest mb-1">Gestão de Produtos (FISPQ)</h5>
-                            <p class="text-blue-100/60 text-sm font-light text-justify">Controle conforme normas GHS, toxicologia e alertas de incompatibilidade química.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Módulo NSP (Segurança do Paciente) -->
-                <div class="module-card-light p-10 rounded-2xl relative group flex flex-col h-full shadow-lg">
-                    <div class="mb-8 flex items-center justify-between">
-                        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center border border-blue-100">
-                            <i class="fas fa-user-shield text-3xl text-blue-600"></i>
-                        </div>
-                        <span class="text-[10px] font-black uppercase tracking-widest text-slate-300">Segurança do Paciente</span>
-                    </div>
-                    <h4 class="text-3xl font-bold mb-4 tracking-tight text-slate-900">Núcleo de Segurança (NSP)</h4>
-                    
-                    <div class="space-y-6 flex-grow">
-                        <div class="border-l-2 border-blue-100 pl-6 hover:border-blue-300 transition-all duration-500">
-                            <h5 class="text-sm font-bold text-slate-800 uppercase tracking-widest mb-1">Eventos Adversos e Causa Raiz</h5>
-                            <p class="text-slate-500 text-sm font-light text-justify">Registro detalhado de eventos com upload de evidências e ferramentas de análise de causa raiz.</p>
-                        </div>
-                        <div class="border-l-2 border-blue-100 pl-6 hover:border-blue-300 transition-all duration-500">
-                            <h5 class="text-sm font-bold text-slate-800 uppercase tracking-widest mb-1">Módulo de Bundles e Escores</h5>
-                            <p class="text-slate-500 text-sm font-light text-justify">Monitoramento de prevenção (PAV, ITU) e índices de gravidade como SAPS3 e SIRS.</p>
-                        </div>
-                        <div class="border-l-2 border-blue-100 pl-6 hover:border-blue-300 transition-all duration-500">
-                            <h5 class="text-sm font-bold text-slate-800 uppercase tracking-widest mb-1">Monitoramento de Sinais Vitais</h5>
-                            <p class="text-slate-500 text-sm font-light text-justify">Alertas automáticos de alterações clínicas para pronta resposta assistencial.</p>
-                        </div>
-                        <div class="border-l-2 border-blue-100 pl-6 hover:border-blue-300 transition-all duration-500">
-                            <h5 class="text-sm font-bold text-slate-800 uppercase tracking-widest mb-1">Internações e Dispositivos</h5>
-                            <p class="text-slate-500 text-sm font-light text-justify">Rastreamento de movimentação e controle do tempo de permanência de dispositivos invasivos.</p>
-                        </div>
-                        <div class="border-l-2 border-blue-100 pl-6 hover:border-blue-300 transition-all duration-500">
-                            <h5 class="text-sm font-bold text-slate-800 uppercase tracking-widest mb-1">Gestão de Ficheiros e Auditoria</h5>
-                            <p class="text-slate-500 text-sm font-light text-justify">Upload em lote vinculado a eventos e log completo para conformidade regulatória.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tecnologia e Notificações -->
-            <div class="mt-8 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="flex items-start gap-4">
-                        <div class="p-3 bg-blue-50 rounded-lg text-blue-600">
-                            <i class="fas fa-bell"></i>
-                        </div>
-                        <div>
-                            <h6 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-1">Sistema de Notificações Inteligentes</h6>
-                            <p class="text-xs text-slate-500 text-justify">Envio automático de alertas críticos e relatórios periódicos por e-mail para as equipes responsáveis.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div class="p-3 bg-blue-50 rounded-lg text-blue-600">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <div>
-                            <h6 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-1">Infraestrutura e Segurança</h6>
-                            <p class="text-xs text-slate-500 text-justify">Autenticação segura, controle rigoroso de perfis de acesso e logs de auditoria de todas as ações.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Metodologia AGF -->
-    <section id="metodologia" class="bg-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-20 items-start">
-                <div>
-                    <span class="text-blue-600 font-bold text-xs uppercase tracking-[0.3em] mb-4 block">Governança Objetiva</span>
-                    <h3 class="text-5xl font-light text-slate-900 mb-8 italic tracking-tight">AGF — <span class="font-bold text-blue-700">ARGUS GATE FRAMEWORK</span></h3>
-                    <div class="text-slate-600 font-light leading-relaxed space-y-6 mb-12">
-                        <p class="text-lg text-justify">A <strong>AGF – Argus Gate Framework</strong> é a metodologia proprietária da Baumgratz Code para condução de projetos com foco em valor e previsibilidade.</p>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
-                            <div class="bg-blue-50 p-6 rounded-xl border border-blue-100 transition-transform duration-500 hover:-translate-y-1">
-                                <i class="fas fa-eye text-blue-600 mb-4 text-xl"></i>
-                                <h5 class="font-bold text-slate-900 text-sm uppercase mb-2">Visão Contínua</h5>
-                                <p class="text-xs text-justify">Acompanhamento permanente com transparência total de riscos e impactos.</p>
-                            </div>
-                            <div class="bg-blue-50 p-6 rounded-xl border border-blue-100 transition-transform duration-500 hover:-translate-y-1">
-                                <i class="fas fa-check-double text-blue-600 mb-4 text-xl"></i>
-                                <h5 class="font-bold text-slate-900 text-sm uppercase mb-2">Decisão Controlada</h5>
-                                <p class="text-xs text-justify">Avanços baseados em critérios objetivos e alinhamento estratégico.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="lg:sticky lg:top-32">
-                    <div class="bg-gradient-to-br from-blue-50 to-white p-10 rounded-2xl border border-blue-100 shadow-xl shadow-blue-500/5">
-                        <h4 class="text-xs font-black uppercase tracking-[0.3em] mb-10 text-blue-400">Estrutura de Governança por Gates</h4>
-                        <div class="space-y-0">
-                            <div class="agf-gate">
-                                <h5 class="text-sm font-bold text-slate-900 mb-1">Gate 1 – Vendas</h5>
-                                <p class="text-xs text-slate-500">Decisão consciente de investimento.</p>
-                            </div>
-                            <div class="agf-gate">
-                                <h5 class="text-sm font-bold text-slate-900 mb-1">Gate 2 – Arquitetura</h5>
-                                <p class="text-xs text-slate-500">Validação técnica e operacional.</p>
-                            </div>
-                            <div class="agf-gate">
-                                <h5 class="text-sm font-bold text-slate-900 mb-1">Gate 3 – Transição Interna</h5>
-                                <p class="text-xs text-slate-500">Alinhamento antes da execução.</p>
-                            </div>
-                            <div class="agf-gate">
-                                <h5 class="text-sm font-bold text-slate-900 mb-1">Gate 4 – Onboarding</h5>
-                                <p class="text-xs text-slate-500">Kickoff e governança formal.</p>
-                            </div>
-                            <div class="agf-gate">
-                                <h5 class="text-sm font-bold text-slate-900 mb-1">Gate 5 – Implantação</h5>
-                                <p class="text-xs text-slate-500">Execução controlada e monitorizada.</p>
-                            </div>
-                            <div class="agf-gate">
-                                <h5 class="text-sm font-bold text-slate-900 mb-1">Gate 6 – Suporte</h5>
-                                <p class="text-xs text-slate-500">Passagem de bastão e encerramento.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Rodapé -->
-    <footer id="contato" class="footer-custom text-white pt-32 pb-16">
-        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent"></div>
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-3 gap-16 mb-24">
-                <div class="col-span-1">
-                    <img src="https://i.postimg.cc/j2G6pmvr/Baumgratz-Code-logo-NEGATIVA-HORIZONTAL3.png" alt="Baumgratz Code" class="brand-logo-footer mb-6">
-                    <p class="text-blue-200/50 font-light leading-relaxed text-justify">
-                        Sede Administrativa<br>
-                        Juiz de Fora, Minas Gerais<br>
-                        Brasil
-                    </p>
-                </div>
-                <div>
-                    <h5 class="text-blue-400 font-bold text-xs uppercase tracking-widest mb-8">Navegação</h5>
-                    <ul class="space-y-4 font-light text-blue-100/60 text-sm">
-                        <li><a href="#" class="hover:text-blue-400 transition-colors">Início</a></li>
-                        <li><a href="#sobre" class="hover:text-blue-400 transition-colors">Sobre o Argus</a></li>
-                        <li><a href="#solucao" class="hover:text-blue-400 transition-colors">Módulos</a></li>
-                        <li><a href="#metodologia" class="hover:text-blue-400 transition-colors">Metodologia</a></li>
+            <div class="grid lg:grid-cols-2 gap-8">
+                <div class="module-card-dark p-10 text-white rounded-2xl shadow-xl">
+                    <h4 class="text-2xl font-bold mb-8 text-blue-400">CCIH e Higienização</h4>
+                    <ul class="space-y-4 text-sm font-light text-blue-100/80">
+                        <li class="border-l-2 border-blue-500/30 pl-4"><strong>Controle de Infecções (IRAS):</strong> Monitoramento rigoroso de PAV, ITU, ICS e gerenciamento de isolamentos.</li>
+                        <li class="border-l-2 border-blue-500/30 pl-4"><strong>Gestão Microbiológica e Lab:</strong> Integração laboratorial para culturas e antibiogramas.</li>
+                        <li class="border-l-2 border-blue-500/30 pl-4"><strong>Cirurgias e ISC:</strong> Classificação de risco cirúrgico e controle de Infecção de Sítio Cirúrgico.</li>
+                        <li class="border-l-2 border-blue-500/30 pl-4"><strong>Higienização e Manutenção:</strong> Gerenciamento de ambientes e checklists de verificação.</li>
+                        <li class="border-l-2 border-blue-500/30 pl-4"><strong>Gestão de Produtos (FISPQ):</strong> Controle conforme normas GHS e toxicologia.</li>
                     </ul>
                 </div>
-                <div>
-                    <h5 class="text-blue-400 font-bold text-xs uppercase tracking-widest mb-8">Contato Direto</h5>
-                    <p class="text-white text-xl font-light mb-4">comercial@argusbc.com.br</p>
-                    <button onclick="openContactModal()" class="inline-block border border-blue-500 text-blue-400 px-6 py-2 rounded text-[10px] uppercase tracking-widest hover:bg-blue-500 hover:text-white transition-all font-bold">Solicitar Proposta</button>
+
+                <div class="module-card-light p-10 rounded-2xl shadow-md">
+                    <h4 class="text-2xl font-bold mb-8 text-slate-900">Núcleo de Segurança (NSP)</h4>
+                    <ul class="space-y-4 text-sm font-light text-slate-600">
+                        <li class="border-l-2 border-blue-100 pl-4"><strong>Eventos Adversos e Causa Raiz:</strong> Registro detalhado de eventos com upload de evidências.</li>
+                        <li class="border-l-2 border-blue-100 pl-4"><strong>Módulo de Bundles e Escores:</strong> Monitoramento de prevenção e índices de gravidade.</li>
+                        <li class="border-l-2 border-blue-100 pl-4"><strong>Monitoramento de Sinais Vitais:</strong> Alertas automáticos de alterações clínicas.</li>
+                        <li class="border-l-2 border-blue-100 pl-4"><strong>Internações e Dispositivos:</strong> Rastreamento de movimentação e tempo de permanência.</li>
+                        <li class="border-l-2 border-blue-100 pl-4"><strong>Gestão de Ficheiros e Auditoria:</strong> Upload em lote e log completo para conformidade.</li>
+                    </ul>
                 </div>
             </div>
-            <div class="pt-12 border-t border-blue-900/50 flex flex-col md:flex-row justify-between items-center text-[10px] text-blue-300/40 font-bold uppercase tracking-widest">
-                <p>© 2025 Baumgratz Code. Todos os direitos reservados.</p>
-                <p>Argus Watch® - Intelligence Applied to Health</p>
+        </div>
+    </section>
+
+    <section id="metodologia" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16">
+            <div>
+                <span class="text-blue-600 font-bold text-xs uppercase tracking-[0.3em] mb-4 block">Governança Objetiva</span>
+                <h3 class="text-4xl font-light text-slate-900 mb-6 italic">AGF — <span class="font-bold text-blue-700">ARGUS GATE FRAMEWORK</span></h3>
+                <p class="text-slate-600 text-lg font-light mb-8 text-justify">A <strong>AGF – Argus Gate Framework</strong> é a metodologia proprietária da Baumgratz Code para condução de projetos com foco em valor e previsibilidade.</p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-4 bg-blue-50 rounded-xl">
+                        <i class="fas fa-eye text-blue-600 mb-2"></i>
+                        <p class="text-[10px] font-bold uppercase text-slate-900">Visão Contínua</p>
+                    </div>
+                    <div class="p-4 bg-blue-50 rounded-xl">
+                        <i class="fas fa-check-double text-blue-600 mb-2"></i>
+                        <p class="text-[10px] font-bold uppercase text-slate-900">Decisão Controlada</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-slate-900 p-10 rounded-3xl text-white">
+                <div class="space-y-6">
+                    <div class="agf-gate"><h5 class="text-sm font-bold">Gate 1 – Vendas</h5><p class="text-[10px] opacity-60">Decisão consciente de investimento.</p></div>
+                    <div class="agf-gate"><h5 class="text-sm font-bold">Gate 2 – Arquitetura</h5><p class="text-[10px] opacity-60">Validação técnica e operacional.</p></div>
+                    <div class="agf-gate"><h5 class="text-sm font-bold">Gate 3 – Transição Interna</h5><p class="text-[10px] opacity-60">Alinhamento antes da execução.</p></div>
+                    <div class="agf-gate"><h5 class="text-sm font-bold">Gate 4 – Onboarding</h5><p class="text-[10px] opacity-60">Kickoff e governança formal.</p></div>
+                    <div class="agf-gate"><h5 class="text-sm font-bold">Gate 5 – Implantação</h5><p class="text-[10px] opacity-60">Execução controlada e monitorizada.</p></div>
+                    <div class="agf-gate border-none"><h5 class="text-sm font-bold">Gate 6 – Suporte</h5><p class="text-[10px] opacity-60">Passagem de bastão e encerramento.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contato" class="bg-[#000B1D] text-white pt-24 pb-12 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-20 mb-20">
+                <div>
+                    <img src="https://i.postimg.cc/j2G6pmvr/Baumgratz-Code-logo-NEGATIVA-HORIZONTAL3.png" alt="Baumgratz Code" class="h-8 mb-8">
+                    <h4 class="text-3xl font-light mb-6">Pronto para elevar a <span class="text-blue-500 font-bold">segurança da sua instituição?</span></h4>
+                    <p class="text-blue-100/50 font-light mb-8">Sede Administrativa: Juiz de Fora, Minas Gerais - Brasil</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-blue-600 transition-all"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-blue-600 transition-all"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="bg-white/5 p-8 rounded-[2rem] border border-white/10">
+                    <form id="contactForm" class="space-y-4">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <input type="text" placeholder="Nome Completo" required class="glass-input w-full p-4 rounded-xl text-sm text-white">
+                            <input type="text" placeholder="Instituição" required class="glass-input w-full p-4 rounded-xl text-sm text-white">
+                        </div>
+                        <input type="email" placeholder="E-mail Profissional" required class="glass-input w-full p-4 rounded-xl text-sm text-white">
+                        <textarea placeholder="Mensagem" rows="4" required class="glass-input w-full p-4 rounded-xl text-sm text-white resize-none"></textarea>
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-bold uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-2">
+                            <span>Enviar Solicitação</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] text-white/30 tracking-widest uppercase">
+                <p>© 2026 Baumgratz Code. Todos os direitos reservados.</p>
+                <p>comercial@argusbc.com.br</p>
             </div>
         </div>
     </footer>
 
+    <div id="successModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 hidden p-6">
+        <div class="bg-white p-10 rounded-3xl max-w-sm w-full text-center">
+            <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check text-2xl"></i>
+            </div>
+            <h4 class="text-xl font-bold text-slate-900 mb-2">Enviado!</h4>
+            <p class="text-slate-500 text-sm mb-6">Agradecemos o contato. Nossa equipe retornará em breve.</p>
+            <button onclick="document.getElementById('successModal').classList.add('hidden')" class="w-full bg-slate-900 text-white py-3 rounded-xl font-bold text-xs uppercase">Fechar</button>
+        </div>
+    </div>
+
     <script>
-        // Funções do Modal de Contato
-        function openContactModal() {
-            const modal = document.getElementById('contactModal');
-            const content = document.getElementById('contactModalContent');
-            modal.classList.add('active');
-            setTimeout(() => {
-                content.classList.remove('scale-90', 'opacity-0');
-                content.classList.add('scale-100', 'opacity-100');
-            }, 10);
-            document.body.style.overflow = 'hidden'; // Trava o scroll do fundo
-        }
-
-        function closeContactModal() {
-            const modal = document.getElementById('contactModal');
-            const content = document.getElementById('contactModalContent');
-            content.classList.remove('scale-100', 'opacity-100');
-            content.classList.add('scale-90', 'opacity-0');
-            setTimeout(() => {
-                modal.classList.remove('active');
-                document.body.style.overflow = ''; // Libera o scroll
-            }, 400);
-        }
-
-        // Funções do Modal de Sucesso
-        function openSuccessModal() {
-            const modal = document.getElementById('successModal');
-            const content = document.getElementById('successModalContent');
-            modal.classList.add('active');
-            setTimeout(() => {
-                content.classList.remove('scale-90', 'opacity-0');
-                content.classList.add('scale-100', 'opacity-100');
-            }, 10);
-        }
-
-        function closeSuccessModal() {
-            const modal = document.getElementById('successModal');
-            const content = document.getElementById('successModalContent');
-            content.classList.remove('scale-100', 'opacity-100');
-            content.classList.add('scale-90', 'opacity-0');
-            setTimeout(() => {
-                modal.classList.remove('active');
-            }, 400);
-        }
-
-        // Fechar modais ao clicar fora do conteúdo
-        window.onclick = function(event) {
-            const contactModal = document.getElementById('contactModal');
-            const successModal = document.getElementById('successModal');
-            if (event.target == contactModal) closeContactModal();
-            if (event.target == successModal) closeSuccessModal();
-        }
-
-        // Scroll Suave
-        function smoothScroll(target, duration) {
-            const targetElement = document.querySelector(target);
-            if (!targetElement) return;
-            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 80;
-            const startPosition = window.pageYOffset;
-            const distance = targetPosition - startPosition;
-            let startTime = null;
-
-            function animation(currentTime) {
-                if (startTime === null) startTime = currentTime;
-                const timeElapsed = currentTime - startTime;
-                const run = ease(timeElapsed, startPosition, distance, duration);
-                window.scrollTo(0, run);
-                if (timeElapsed < duration) requestAnimationFrame(animation);
-            }
-
-            function ease(t, b, c, d) {
-                t /= d / 2;
-                if (t < 1) return c / 2 * t * t * t + b;
-                t -= 2;
-                return c / 2 * (t * t * t + 2) + b;
-            }
-
-            requestAnimationFrame(animation);
-        }
-
+        // Smooth scroll para todos os links internos
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== "#") {
-                    e.preventDefault();
-                    smoothScroll(href, 1000);
-                }
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
 
-        // Botão Voltar ao Topo
-        const backToTopBtn = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 500) {
-                backToTopBtn.classList.add('show');
-            } else {
-                backToTopBtn.classList.remove('show');
-            }
-        });
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        // Back to Top
+        const btnTop = document.getElementById('backToTop');
+        window.onscroll = () => {
+            btnTop.style.display = window.scrollY > 500 ? 'flex' : 'none';
+        };
+        btnTop.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
 
-        // Manipulação do Formulário no Modal
-        const form = document.getElementById('argusForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const btnText = document.getElementById('btnText');
-        const btnIcon = document.getElementById('btnIcon');
-        const btnLoading = document.getElementById('btnLoading');
-
-        form.addEventListener('submit', async (e) => {
+        // Form Submit Simulado
+        document.getElementById('contactForm').onsubmit = (e) => {
             e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            btn.disabled = true;
 
-            submitBtn.disabled = true;
-            btnText.innerText = "Enviando...";
-            btnIcon.classList.add('hidden');
-            btnLoading.classList.remove('hidden');
-
-            const formData = new FormData(form);
-            formData.append('_subject', 'Nova Solicitação de Demonstração - ARGUS Watch');
-            formData.append('_captcha', 'false');
-
-            try {
-                // Endpoint real para recebimento de emails
-                const response = await fetch("https://formsubmit.co/ajax/joaopedro@grizendi.com.br", {
-                    method: "POST",
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (response.ok) {
-                    closeContactModal();
-                    setTimeout(() => {
-                        openSuccessModal();
-                    }, 500);
-                    form.reset();
-                } else {
-                    throw new Error("Erro no envio");
-                }
-            } catch (error) {
-                console.error(error);
-                btnText.innerText = "Tentar Novamente";
-            } finally {
-                submitBtn.disabled = false;
-                btnLoading.classList.add('hidden');
-                btnIcon.classList.remove('hidden');
-            }
-        });
+            setTimeout(() => {
+                document.getElementById('successModal').classList.remove('hidden');
+                e.target.reset();
+                btn.innerHTML = '<span>Enviar Solicitação</span> <i class="fas fa-paper-plane"></i>';
+                btn.disabled = false;
+            }, 1500);
+        };
     </script>
 </body>
 </html>
