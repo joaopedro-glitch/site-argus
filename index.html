@@ -38,7 +38,6 @@
             max-width: 650px;
             width: 90%;
             margin: 0 auto 1.5rem;
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 10;
         }
 
@@ -127,13 +126,13 @@
     <nav class="fixed w-full z-50 bg-[#000B1D]/90 backdrop-blur-md border-b border-blue-900/30">
         <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
             <img src="https://i.postimg.cc/j2G6pmvr/Baumgratz-Code-logo-NEGATIVA-HORIZONTAL3.png" alt="Baumgratz Code" class="h-6">
+            
             <div class="hidden md:flex space-x-8 items-center">
                 <a href="#sobre" class="text-white/70 hover:text-white text-xs uppercase tracking-widest font-light">Sobre</a>
                 <a href="#solucao" class="text-white/70 hover:text-white text-xs uppercase tracking-widest font-light">Ecossistema</a>
                 <a href="#metodologia" class="text-white/70 hover:text-white text-xs uppercase tracking-widest font-light">Metodologia</a>
                 <a href="#contato" class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded text-xs uppercase tracking-widest font-bold transition-all">Contato</a>
             </div>
-            <a href="#contato" class="md:hidden bg-blue-600 text-white px-4 py-2 rounded text-[10px] uppercase font-bold">Contato</a>
         </div>
     </nav>
 
@@ -267,17 +266,6 @@
         </div>
     </footer>
 
-    <div id="successModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 hidden p-6">
-        <div class="bg-white p-10 rounded-3xl max-w-sm w-full text-center">
-            <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-check text-2xl"></i>
-            </div>
-            <h4 class="text-xl font-bold text-slate-900 mb-2">Enviado!</h4>
-            <p class="text-slate-500 text-sm mb-6">Agradecemos o contato. Nossa equipe retornará em breve.</p>
-            <button onclick="document.getElementById('successModal').classList.add('hidden')" class="w-full bg-slate-900 text-white py-3 rounded-xl font-bold text-xs uppercase">Fechar</button>
-        </div>
-    </div>
-
     <script>
         // Smooth scroll para todos os links internos
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -304,7 +292,7 @@
             btn.disabled = true;
 
             setTimeout(() => {
-                document.getElementById('successModal').classList.remove('hidden');
+                alert('Mensagem enviada com sucesso!');
                 e.target.reset();
                 btn.innerHTML = '<span>Enviar Solicitação</span> <i class="fas fa-paper-plane"></i>';
                 btn.disabled = false;
