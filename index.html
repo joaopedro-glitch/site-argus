@@ -171,9 +171,13 @@
             width: auto;
         }
         
+        /* Logo do rodapé reduzida significativamente (max-width de 140px) */
         .brand-logo-footer {
-            height: 50px;
-            width: auto;
+            height: auto;
+            width: 100%;
+            max-width: 140px; 
+            display: block;
+            opacity: 0.9;
         }
     </style>
 </head>
@@ -469,6 +473,7 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-3 gap-16 mb-24">
                 <div class="col-span-1">
+                    <!-- Logo reduzida significativamente -->
                     <img src="https://i.postimg.cc/j2G6pmvr/Baumgratz-Code-logo-NEGATIVA-HORIZONTAL3.png" alt="Baumgratz Code" class="brand-logo-footer mb-6">
                     <p class="text-blue-200/50 font-light leading-relaxed">
                         Sede Administrativa<br>
@@ -486,7 +491,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h5 class="text-blue-400 font-bold text-xs uppercase tracking-widest mb-8">Contacto</h5>
+                    <h5 class="text-blue-400 font-bold text-xs uppercase tracking-widest mb-8">Contato</h5>
                     <p class="text-white text-xl font-light mb-4">comercial@argusbc.com.br</p>
                     <a href="mailto:comercial@argusbc.com.br" class="inline-block border border-blue-500 text-blue-400 px-6 py-2 rounded text-xs uppercase tracking-widest hover:bg-blue-500 hover:text-white transition-all">Enviar Email</a>
                 </div>
