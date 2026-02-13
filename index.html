@@ -264,7 +264,7 @@
             <div class="grid lg:grid-cols-2 gap-20 mb-20">
                 <div>
                     <img src="https://i.postimg.cc/j2G6pmvr/Baumgratz-Code-logo-NEGATIVA-HORIZONTAL3.png" alt="Baumgratz Code" class="h-8 mb-8">
-                    <h4 class="text-3xl font-light mb-6">Pronto para elevar a <span class="text-blue-500 font-bold">segurança da sua institution?</span></h4>
+                    <h4 class="text-3xl font-light mb-6">Pronto para elevar a <span class="text-blue-500 font-bold">segurança da sua instituição?</span></h4>
                     <p class="text-blue-100/50 font-light mb-8">Sede Administrativa: Juiz de Fora, Minas Gerais - Brasil</p>
                     <div class="flex gap-4">
                         <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-blue-600 transition-all"><i class="fab fa-linkedin-in"></i></a>
@@ -275,12 +275,15 @@
                 <div class="bg-white/5 p-8 rounded-[2rem] border border-white/10">
                     <form id="contactForm" class="space-y-4">
                         <div class="grid md:grid-cols-2 gap-4">
-                            <input type="text" placeholder="Nome Completo" required class="glass-input w-full p-4 rounded-xl text-sm text-white">
-                            <input type="text" placeholder="Instituição" required class="glass-input w-full p-4 rounded-xl text-sm text-white">
+                            <input type="text" id="nome" placeholder="Nome Completo" required class="glass-input w-full p-4 rounded-xl text-sm text-white">
+                            <input type="text" id="instituicao" placeholder="Instituição" required class="glass-input w-full p-4 rounded-xl text-sm text-white">
                         </div>
-                        <input type="email" placeholder="E-mail Profissional" required class="glass-input w-full p-4 rounded-xl text-sm text-white">
-                        <textarea placeholder="Mensagem" rows="4" required class="glass-input w-full p-4 rounded-xl text-sm text-white resize-none"></textarea>
-                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-bold uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-2">
+                        <input type="email" id="email" placeholder="E-mail Profissional" required class="glass-input w-full p-4 rounded-xl text-sm text-white">
+                        <textarea id="mensagem" placeholder="Mensagem" rows="4" required class="glass-input w-full p-4 rounded-xl text-sm text-white resize-none"></textarea>
+                        
+                        <button type="submit" id="submitBtn" disabled 
+                                class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-bold uppercase tracking-widest text-xs transition-all flex items-center justify-center gap-2 
+                                       disabled:opacity-40 disabled:bg-slate-700 disabled:cursor-not-allowed">
                             <span>Enviar Solicitação</span>
                             <i class="fas fa-paper-plane"></i>
                         </button>
@@ -313,18 +316,41 @@
         };
         btnTop.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
 
+        // --- LÓGICA DE VALIDAÇÃO E TRAVA DO FORMULÁRIO ---
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const requiredInputs = contactForm.querySelectorAll('[required]');
+
+        function checkInputs() {
+            let allFilled = true;
+            requiredInputs.forEach(input => {
+                if (input.value.trim() === '') {
+                    allFilled = false;
+                }
+            });
+            // Habilita ou desabilita o botão
+            submitBtn.disabled = !allFilled;
+        }
+
+        // Adiciona evento de escuta em cada campo obrigatório
+        requiredInputs.forEach(input => {
+            input.addEventListener('input', checkInputs);
+        });
+
         // Form Submit Simulado
-        document.getElementById('contactForm').onsubmit = (e) => {
+        contactForm.onsubmit = (e) => {
             e.preventDefault();
-            const btn = e.target.querySelector('button');
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-            btn.disabled = true;
+            
+            // Estado de carregamento no botão
+            const originalContent = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            submitBtn.disabled = true;
 
             setTimeout(() => {
-                alert('Mensagem enviada com sucesso!');
-                e.target.reset();
-                btn.innerHTML = '<span>Enviar Solicitação</span> <i class="fas fa-paper-plane"></i>';
-                btn.disabled = false;
+                alert('Mensagem enviada com sucesso! Nossa equipe entrará em contato em breve.');
+                contactForm.reset(); // Limpa os campos
+                submitBtn.innerHTML = originalContent;
+                checkInputs(); // Volta a travar o botão após o reset
             }, 1500);
         };
     </script>
