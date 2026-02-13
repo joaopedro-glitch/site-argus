@@ -93,6 +93,7 @@
             outline: none;
         }
 
+        /* Floating Buttons */
         #backToTop {
             position: fixed;
             bottom: 30px;
@@ -109,6 +110,28 @@
             box-shadow: 0 10px 20px rgba(0, 85, 255, 0.3);
         }
 
+        #whatsappButton {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        #whatsappButton:hover {
+            transform: scale(1.1);
+            background: #128C7E;
+        }
+
         .drop-cap::first-letter {
             font-size: 3.5rem;
             font-weight: 700;
@@ -120,6 +143,12 @@
     </style>
 </head>
 <body>
+
+    <a href="https://wa.me/5532999402534?text=Olá! Vim através do site e gostaria de mais informações sobre o ARGUS Watch." 
+       id="whatsappButton" 
+       target="_blank">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
 
     <button id="backToTop"><i class="fas fa-chevron-up"></i></button>
 
@@ -235,7 +264,7 @@
             <div class="grid lg:grid-cols-2 gap-20 mb-20">
                 <div>
                     <img src="https://i.postimg.cc/j2G6pmvr/Baumgratz-Code-logo-NEGATIVA-HORIZONTAL3.png" alt="Baumgratz Code" class="h-8 mb-8">
-                    <h4 class="text-3xl font-light mb-6">Pronto para elevar a <span class="text-blue-500 font-bold">segurança da sua instituição?</span></h4>
+                    <h4 class="text-3xl font-light mb-6">Pronto para elevar a <span class="text-blue-500 font-bold">segurança da sua institution?</span></h4>
                     <p class="text-blue-100/50 font-light mb-8">Sede Administrativa: Juiz de Fora, Minas Gerais - Brasil</p>
                     <div class="flex gap-4">
                         <a href="#" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-blue-600 transition-all"><i class="fab fa-linkedin-in"></i></a>
@@ -277,7 +306,7 @@
             });
         });
 
-        // Back to Top
+        // Back to Top e Visibilidade do WhatsApp
         const btnTop = document.getElementById('backToTop');
         window.onscroll = () => {
             btnTop.style.display = window.scrollY > 500 ? 'flex' : 'none';
