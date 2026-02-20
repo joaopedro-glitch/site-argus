@@ -275,25 +275,25 @@
                         </a>
                     </div>
                 </div>
-                
-                <div class="bg-white/5 p-8 rounded-[2rem] border border-white/10">
-                   <form id="contactForm" action="https://formspree.io/f/contato@argusbc.com.br" method="POST" class="space-y-4">
-    <div class="grid md:grid-cols-2 gap-4">
-        <input type="text" name="nome" id="nome" placeholder="Nome Completo" required class="glass-input w-full p-4 rounded-xl text-sm text-white">
-        <input type="text" name="instituicao" id="instituicao" placeholder="Instituição" required class="glass-input w-full p-4 rounded-xl text-sm text-white">
-    </div>
-    <input type="email" name="email" id="email" placeholder="E-mail Profissional" required class="glass-input w-full p-4 rounded-xl text-sm text-white">
-    <textarea name="mensagem" id="mensagem" placeholder="Mensagem" rows="4" required class="glass-input w-full p-4 rounded-xl text-sm text-white resize-none"></textarea>
-    
-    <button type="submit" id="submitBtn" disabled class="...">
-        <span>Enviar Solicitação</span>
-        <i class="fas fa-paper-plane"></i>
-    </button>
-</form>
-                        </button>
-                    </form>
-                </div>
-            </div>
+                <div class="bg-white/5 p-8 rounded-[2.5rem] border border-white/10">
+    <form id="contactForm" class="space-y-4">
+        <input type="hidden" name="_subject" value="Novo Contato: ARGUS Watch">
+        <input type="hidden" name="_captcha" value="false">
+
+        <div class="grid md:grid-cols-2 gap-4">
+            <input type="text" name="nome" id="nome" placeholder="Seu Nome" required class="glass-input w-full p-4 rounded-xl text-sm outline-none text-white">
+            <input type="text" name="instituicao" id="empresa" placeholder="Sua Instituição" required class="glass-input w-full p-4 rounded-xl text-sm outline-none text-white">
+        </div>
+        <input type="email" name="email" id="email" placeholder="E-mail Corporativo" required class="glass-input w-full p-4 rounded-xl text-sm outline-none text-white">
+        <textarea name="mensagem" id="mensagem" placeholder="Fale sobre seu desafio ou interesse no ARGUS Watch" rows="4" required class="glass-input w-full p-4 rounded-xl text-sm outline-none resize-none text-white"></textarea>
+        
+        <button type="submit" id="submitBtn" disabled class="w-full bg-blue-600 hover:bg-blue-500 py-4 rounded-xl font-black uppercase text-[10px] tracking-widest transition-all disabled:opacity-30 text-white">
+            Enviar Mensagem
+        </button>
+        
+        <p id="formStatus" class="text-center text-[10px] font-bold uppercase tracking-[0.2em] mt-4 hidden"></p>
+    </form>
+</div>
             
             <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-[10px] text-white/30 tracking-widest uppercase">
                 <p>© 2026 Baumgratz Code. Todos os direitos reservados.</p>
@@ -302,60 +302,76 @@
         </div>
     </footer>
 
-    <script>
-        // Smooth scroll para links internos
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#') {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if(target) target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
+   <script>
+    // 1. Scroll suave
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href !== '#' && href.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if(target) target.scrollIntoView({ behavior: 'smooth' });
+            }
         });
+    });
 
-        // Back to Top e Visibilidade do WhatsApp
-        const btnTop = document.getElementById('backToTop');
-        window.onscroll = () => {
-            btnTop.style.display = window.scrollY > 500 ? 'flex' : 'none';
-        };
-        btnTop.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
+    // Back to Top
+    const btnTop = document.getElementById('backToTop');
+    window.onscroll = () => {
+        if(btnTop) btnTop.style.display = window.scrollY > 500 ? 'flex' : 'none';
+    };
+    if(btnTop) btnTop.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
 
-        // LÓGICA DE VALIDAÇÃO E TRAVA DO FORMULÁRIO
-        const contactForm = document.getElementById('contactForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const requiredInputs = contactForm.querySelectorAll('[required]');
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const statusTxt = document.getElementById('formStatus');
+    const inputs = contactForm.querySelectorAll('[required]');
 
-        function checkInputs() {
-            let allFilled = true;
-            requiredInputs.forEach(input => {
-                if (input.value.trim() === '') {
-                    allFilled = false;
-                }
-            });
-            submitBtn.disabled = !allFilled;
-        }
+    // 2. Validação visual dos campos
+    function validate() {
+        let filled = true;
+        inputs.forEach(i => { if(i.value.trim() === "") filled = false; });
+        submitBtn.disabled = !filled;
+    }
+    inputs.forEach(i => i.addEventListener('input', validate));
 
-        requiredInputs.forEach(input => {
-            input.addEventListener('input', checkInputs);
+    // 3. ENVIO VIA AJAX (Direcionado para contato@argusbc.com.br)
+    contactForm.addEventListener("submit", function(e) {
+        e.preventDefault(); 
+        
+        submitBtn.disabled = true;
+        submitBtn.innerText = "ENVIANDO...";
+        statusTxt.classList.add('hidden'); // Esconde status anterior
+        
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData.entries());
+
+        // Usando FormSubmit.co apontando para o seu e-mail da Argus
+        fetch("https://formsubmit.co/ajax/contato@argusbc.com.br", {
+            method: "POST",
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Sucesso
+            statusTxt.innerText = "Mensagem enviada com sucesso!";
+            statusTxt.className = "text-center text-[10px] font-bold uppercase tracking-[0.2em] mt-4 text-green-500 block";
+            contactForm.reset();
+            submitBtn.innerText = "ENVIAR MENSAGEM";
+            validate(); // Retrava o botão
+        })
+        .catch(error => {
+            // Erro
+            statusTxt.innerText = "Erro ao enviar. Tente novamente.";
+            statusTxt.className = "text-center text-[10px] font-bold uppercase tracking-[0.2em] mt-4 text-red-500 block";
+            submitBtn.disabled = false;
+            submitBtn.innerText = "TENTAR NOVAMENTE";
         });
-
-        // Envio do Formulário
-        contactForm.onsubmit = (e) => {
-            e.preventDefault();
-            
-            const originalContent = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-            submitBtn.disabled = true;
-
-            setTimeout(() => {
-                alert('Mensagem enviada com sucesso!');
-                contactForm.reset();
-                submitBtn.innerHTML = originalContent;
-                checkInputs(); // Retrava após o reset
-            }, 1500);
-        };
-    </script>
+    });
+</script>
 </body>
 </html>
